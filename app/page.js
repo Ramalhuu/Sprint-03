@@ -1,103 +1,165 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import React, { useState } from 'react';
+import { Calendar, Clock, User, Home as HomeIcon, Plus, Users } from 'lucide-react';
+import CadastroJogadora from './CadastroJogadora';
+import ListaJogadoras from './ListaJogadoras';
+
+function Home() {
+  const [isCadastroOpen, setIsCadastroOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' ou 'lista'
+
+  const handleOpenCadastro = () => {
+    setIsCadastroOpen(true);
+  };
+
+  const handleCloseCadastro = () => {
+    setIsCadastroOpen(false);
+  };
+
+  const handleGoToLista = () => {
+    setCurrentPage('lista');
+  };
+
+  const handleBackToHome = () => {
+    setCurrentPage('home');
+  };
+
+  // Se estiver na página de lista, renderizar o componente ListaJogadoras
+  if (currentPage === 'lista') {
+    return <ListaJogadoras onBack={handleBackToHome} />;
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="bg-purple-600 text-white p-4 text-center">
+        <h1 className="text-xl font-semibold">Home</h1>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Welcome Section */}
+      <div className="p-4">
+        <div className="bg-gray-50 rounded-lg p-4 mb-6">
+          <h2 className="text-lg font-semibold text-gray-800 mb-2">
+            Bem-vinda ao Donas da Bola!
+          </h2>
+          <p className="text-sm text-gray-600 leading-relaxed mb-2">
+            Aqui o futebol é delas! Conecte-se com outras jogadoras, participe de eventos, inscreva-se em torneios, organize peladas semanais e viva o esporte com segurança e liberdade.
+          </p>
+          <p className="text-sm text-gray-600 leading-relaxed mb-2">
+            Este é o seu espaço para brilhar, jogar e crescer dentro e fora das quadras. ⚽💜
+          </p>
+          <p className="text-sm text-gray-600">
+            Vamos juntas transformar o jogo?
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Copinha de Futebol Section */}
+        <div className="mb-6">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4">Copinha de Futebol</h3>
+          
+          <div className="grid grid-cols-2 gap-3 mb-4">
+            {/* Copa Sul */}
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
+              <div className="flex items-center text-sm text-gray-600 mb-1">
+                <Calendar className="w-4 h-4 mr-1" />
+                <span>15 JUL, 2025</span>
+              </div>
+              <div className="flex items-center text-sm text-gray-600">
+                <Clock className="w-4 h-4 mr-1" />
+                <span>10:00</span>
+              </div>
+            </div>
+
+            {/* Copa Norte */}
+            <div className="bg-white border border-gray-200 rounded-lg p-3">
+              <h4 className="font-medium text-gray-800 mb-2">Copa Norte</h4>
+              <div className="flex items-center text-sm text-gray-600 mb-1">
+                <Calendar className="w-4 h-4 mr-1" />
+                <span>17 JUL, 2025</span>
+              </div>
+              <div className="flex items-center text-sm text-gray-600">
+                <Clock className="w-4 h-4 mr-1" />
+                <span>14:00</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Cadastro de Jogadora */}
+          <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+            <div className="flex items-start">
+              <div className="bg-green-100 rounded-full p-2 mr-3">
+                <User className="w-5 h-5 text-green-600" />
+              </div>
+              <div className="flex-1">
+                <h4 className="font-medium text-gray-800 mb-1">Cadastro de Jogadora</h4>
+                <p className="text-sm text-gray-600 mb-3">
+                  Se cadastre para ter mais chance de ser chamada por empresas!
+                </p>
+                <button 
+                  onClick={handleOpenCadastro}
+                  className="w-full bg-pink-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-pink-600 transition-colors"
+                >
+                  Cadastrar-se
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Futebol Semanal Section */}
+        <div className="bg-purple-600 text-white rounded-lg p-4 mb-6">
+          <div className="flex items-center justify-between">
+            <div className="flex-1">
+              <h3 className="font-semibold mb-1">Futebol Semanal - Gratuito</h3>
+              <div className="flex items-center text-sm mb-1">
+                <Calendar className="w-4 h-4 mr-1" />
+                <span>Rio de Janeiro, Terça-feira 17</span>
+              </div>
+              <p className="text-sm">Inscrições fecham às 14:22</p>
+            </div>
+            <div className="ml-4">
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Navigation */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div className="flex justify-around py-2">
+          <button className="flex flex-col items-center p-2">
+            <div className="bg-green-500 rounded-full p-2">
+              <HomeIcon className="w-5 h-5 text-white" />
+            </div>
+          </button>
+          <button className="flex flex-col items-center p-2">
+            <Calendar className="w-6 h-6 text-gray-400" />
+          </button>
+          <button className="flex flex-col items-center p-2">
+            <Plus className="w-6 h-6 text-gray-400" />
+          </button>
+          <button 
+            onClick={handleGoToLista}
+            className="flex flex-col items-center p-2"
+          >
+            <div className="bg-green-500 rounded-full p-1">
+              <Users className="w-4 h-4 text-white" />
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Modal de Cadastro */}
+      <CadastroJogadora 
+        isOpen={isCadastroOpen} 
+        onClose={handleCloseCadastro} 
+      />
     </div>
   );
 }
+
+export default Home;
