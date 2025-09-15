@@ -1,8 +1,6 @@
-"use client";
-import { Plus } from "lucide-react";
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
-import CadastroJogadora from '../components/CadastroJogadora';
+import CadastroJogadora from './CadastroJogadora';
 
 function Home() {
   const [isCadastroOpen, setIsCadastroOpen] = useState(false);
@@ -16,9 +14,9 @@ function Home() {
   };
 
   return (
-    <div className="p-4 min-h-screen bg-white">
+    <div className="p-4">
       {/* Welcome Section */}
-      <div className="bg-gray-200 rounded-lg p-4 mb-6">
+      <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-2">
           Bem-vinda ao Donas da Bola!
         </h2>
