@@ -1,6 +1,9 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { User, Mail, Phone, MapPin, Calendar, Clock, Star, RefreshCw, AlertCircle } from 'lucide-react';
-import { useJogadoras } from '../hooks/useApi';
+import { useJogadoras } from '../components/hooks/useApi';
+import { useRouter } from 'next/navigation';
 
 function ListaJogadoras() {
   const [filtro, setFiltro] = useState('');

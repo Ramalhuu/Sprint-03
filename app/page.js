@@ -2,7 +2,8 @@
 import { Plus } from "lucide-react";
 import { useState } from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
-import CadastroJogadora from '../components/CadastroJogadora';
+import CadastroJogadora from './components/CadastroJogadora';
+import Navigation from './components/navigation_component';
 
 function Home() {
   const [isCadastroOpen, setIsCadastroOpen] = useState(false);
@@ -17,6 +18,14 @@ function Home() {
 
   return (
     <div className="p-4 min-h-screen bg-white">
+      <div>
+      <Navigation />
+      {/* Seu outro conteúdo da página aqui */}
+      <main>
+        <h1>Bem-vindo à Home Page!</h1>
+        {/* ... */}
+      </main>
+    </div>
       {/* Welcome Section */}
       <div className="bg-gray-200 rounded-lg p-4 mb-6">
         <h2 className="text-6xl font-semibold text-gray-800 mb-2 text-center">

@@ -7,7 +7,7 @@ export function useJogadoras() {
   const [jogadoras, setJogadoras] = useState([]);
 
   const fetchJogadoras = useCallback(async (filters = {}) => {
-    const apiService = (await import("../services/api.js")).default;
+    const apiService = (await import("../../../services/api.js")).default;
     const data = await execute(
       () => apiService.getJogadoras(filters),
       { 
@@ -20,7 +20,7 @@ export function useJogadoras() {
   }, [execute]);
 
   const createJogadora = useCallback(async (jogadoraData) => {
-    const apiService = (await import("../services/api.js")).default;
+    const apiService = (await import("../../../services/api.js")).default;
     const data = await execute(
       () => apiService.createJogadora(jogadoraData),
       { 
@@ -33,7 +33,7 @@ export function useJogadoras() {
   }, [execute]);
 
   const updateJogadora = useCallback(async (id, jogadoraData) => {
-    const apiService = (await import("../services/api.js")).default;
+    const apiService = (await import("../../../services/api.js")).default;
     const data = await execute(
       () => apiService.updateJogadora(id, jogadoraData),
       { 
@@ -46,7 +46,7 @@ export function useJogadoras() {
   }, [execute]);
 
   const deleteJogadora = useCallback(async (id) => {
-    const apiService = (await import("../services/api.js")).default;
+    const apiService = (await import("../../../services/api.js")).default;
     await execute(
       () => apiService.deleteJogadora(id),
       { 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, User, Mail, Phone, Calendar, MapPin, Target, Trophy, Clock } from 'lucide-react';
-import { useJogadoras } from '../hooks/useJogadoras';
+import { useJogadoras } from './hooks/useJogadoras';
 
 function CadastroJogadora({ isOpen, onClose }) {
   const [formData, setFormData] = useState({

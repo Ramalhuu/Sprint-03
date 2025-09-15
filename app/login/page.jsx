@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
+"use client"
 
-function Login() {
+import React, { useState } from 'react';
+import { Mail, Lock, Eye, EyeOff, LogIn } from 'lucide-react';
+import { useAuth } from '../components/AuthContext';
+import { useRouter } from 'next/navigation';
+
+export default function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -13,7 +15,7 @@ function Login() {
   const [loading, setLoading] = useState(false);
   
   const { login } = useAuth();
-  const navigate = useNavigate();
+  const router = useRouter(); // Next.js router
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,7 +24,6 @@ function Login() {
       [name]: value
     }));
     
-    // Limpar erro do campo quando o usuário começar a digitar
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -63,7 +64,7 @@ function Login() {
       const result = await login(formData.email, formData.password);
       
       if (result.success) {
-        navigate('/home');
+        router.push('/');
       } else {
         setErrors({ general: result.error });
       }
@@ -200,6 +201,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;
-
