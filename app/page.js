@@ -103,7 +103,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1">
+        <div className="flex flex-col justify-center items-center flex-1 mr-43">
           <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -132,7 +132,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1">
+        <div className="flex flex-col justify-center items-center flex-1 mr-43">
           <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -161,7 +161,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1">
+        <div className="flex flex-col justify-center items-center flex-1 mr-43">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -190,7 +190,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1">
+        <div className="flex flex-col justify-center items-center flex-1 mr-43">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
