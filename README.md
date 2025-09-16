@@ -1,117 +1,89 @@
-Donas da Bola - Plataforma de Futebol Feminino
+Donas da Bola ⚽💜
 
-Este é um projeto Next.js desenvolvido para a plataforma Donas da Bola, dedicada ao futebol feminino. Ele oferece às jogadoras um espaço para se conectar, participar de eventos, organizar jogos semanais e acompanhar torneios.
+💜 Sobre o Projeto
 
+Donas da Bola é uma plataforma dedicada ao futebol feminino, proporcionando um espaço seguro e divertido para jogadoras se conectarem, participarem de torneios e organizarem jogos semanais.
+O projeto foi desenvolvido com Next.js e React, usando Tailwind CSS para estilização responsiva e Lucide Icons para ícones modernos.
 
-Tecnologias Utilizadas
+🌟 Funcionalidades Principais
 
-Next.js - framework React moderno para aplicações web
+Boas-vindas motivacional: mensagem de introdução à plataforma e incentivo às jogadoras
 
-React - biblioteca para construção de interfaces
+Copinha de Futebol: listagem de copas regionais com datas e horários
 
-Tailwind CSS - estilização rápida e responsiva
+Futebol Semanal: jogos gratuitos, inscrições e detalhes de horários
 
-Lucide Icons - ícones SVG para interface
+Próximos Jogos: exibição detalhada de partidas com times, logos, datas e horários
 
-Vercel - plataforma para deploy e hospedagem
+Cadastro de Jogadoras: modal para novas usuárias se cadastrarem na plataforma
 
+🖼️ Visual da Página Principal
+<div align="center"> <img src="https://via.placeholder.com/800x400?text=Print+da+Página+Principal" alt="Página Principal" width="80%"> </div>
+🚀 Tecnologias Utilizadas
 
-Objetivo do Projeto
+Next.js
 
-Criar uma experiência completa para jogadoras de futebol feminino, permitindo que elas:
+React
 
-Se conectem com outras jogadoras e clubes
+Tailwind CSS
 
-Se inscrevam em torneios e copas regionais
+Lucide Icons
 
-Participem de jogos semanais gratuitos
+Vercel
 
-Tenham acesso a informações e horários de jogos
-
-Tenham um espaço seguro e inclusivo para crescer no esporte
-
-
-Funcionalidades Principais
-
-Seção de boas-vindas: introdução à plataforma e mensagem motivacional para jogadoras
-
-Copinha de Futebol: listagem de copas regionais e datas de jogos
-
-Futebol Semanal: jogos gratuitos com informações sobre inscrições e horários
-
-Próximos Jogos: exibição detalhada dos jogos com times, datas e horários
-
-Modal de Cadastro: permite que novas jogadoras se cadastrem na plataforma
-
-
-Começando
+🛠️ Começando
 Pré-requisitos
 
-Node.js instalado (recomenda-se a versão LTS)
+Node.js (versão LTS recomendada)
 
-npm, yarn ou pnpm como gerenciador de pacotes
+npm, yarn ou pnpm
 
-Instalação e execução local
-
-Clone o repositório:
-
+Instalação
 git clone <URL_DO_REPOSITORIO>
 cd <NOME_DO_PROJETO>
-
-
-Instale as dependências:
-
 npm install
-# ou
-yarn
-# ou
-pnpm install
+# ou yarn
+# ou pnpm install
 
-
-Execute o servidor de desenvolvimento:
-
+Executando Localmente
 npm run dev
-# ou
-yarn dev
-# ou
-pnpm dev
+# ou yarn dev
+# ou pnpm dev
 
 
-Abra http://localhost:3000
- no navegador para visualizar o site.
+Acesse http://localhost:3000
+ no navegador.
 
-Estrutura do Projeto
+📂 Estrutura do Projeto
 /app
-  page.js                   # Página principal com informações e próximos jogos
+  page.js                   # Página principal
 /components
   CadastroJogadora.jsx      # Modal de cadastro de jogadoras
-  Navigation.jsx            # Componente de navegação
+  Navigation.jsx            # Menu de navegação
 /public
   /img                      # Logos dos times e imagens estáticas
 
-
-Como Contribuir
+🤝 Como Contribuir
 
 Fork o repositório
 
-Crie uma branch para sua feature: git checkout -b minha-feature
+Crie uma branch: git checkout -b minha-feature
 
-Faça commit das alterações: git commit -m "Descrição da feature"
+Faça commit: git commit -m "Minha feature"
 
-Envie para a branch: git push origin minha-feature
+Envie para o GitHub: git push origin minha-feature
 
-Abra um Pull Request para revisão
+Abra um Pull Request
 
-
-Links Úteis
+🔗 Links Úteis
 
 Documentação Next.js
 
-Tutorial Interativo Learn Next.js
+Tutorial Learn Next.js
 
 Repositório Next.js no GitHub
 
-Deploy
+☁️ Deploy
 
-O deploy pode ser realizado na Vercel, plataforma oficial do Next.js.
-Veja a documentação de deploy do Next.js na Vercel
+O deploy pode ser feito facilmente na Vercel:
+Deploy do Next.js na Vercel
