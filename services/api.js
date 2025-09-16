@@ -66,14 +66,13 @@ let jogadorasData = [...mockJogadoras];
 let nextId = 6;
 
 const apiService = {
-  // Listar todas as jogadoras
+
   async getJogadoras(filters = {}) {
-    // Simular delay de rede
+
     await new Promise(resolve => setTimeout(resolve, 500));
     
     let filteredJogadoras = [...jogadorasData];
     
-    // Aplicar filtros se fornecidos
     if (filters.posicao) {
       filteredJogadoras = filteredJogadoras.filter(j => j.posicao === filters.posicao);
     }
@@ -89,9 +88,7 @@ const apiService = {
     return { jogadoras: filteredJogadoras };
   },
 
-  // Criar uma jogadora
   async createJogadora(jogadoraData) {
-    // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 300));
     
     const novaJogadora = {
@@ -104,9 +101,7 @@ const apiService = {
     return novaJogadora;
   },
 
-  // Atualizar uma jogadora
   async updateJogadora(id, jogadoraData) {
-    // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 300));
     
     const index = jogadorasData.findIndex(j => j.id === parseInt(id));
@@ -118,9 +113,7 @@ const apiService = {
     return jogadorasData[index];
   },
 
-  // Deletar uma jogadora
   async deleteJogadora(id) {
-    // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 300));
     
     const index = jogadorasData.findIndex(j => j.id === parseInt(id));
@@ -132,12 +125,9 @@ const apiService = {
     return true;
   },
 
-  // Exemplo de login
   async login(email, password) {
-    // Simular delay de rede
     await new Promise(resolve => setTimeout(resolve, 500));
     
-    // Login de demonstração - aceita qualquer email/senha
     if (email && password) {
       return { 
         success: true, 
@@ -152,16 +142,15 @@ const apiService = {
     return { success: false, error: "Credenciais inválidas" };
   },
 
-  // Exemplo de logout
   async logout() {
-    // Simular delay de rede
+
     await new Promise(resolve => setTimeout(resolve, 200));
     return true;
   },
 
-  // Exemplo de estatísticas
+
   async getEstatisticas() {
-    // Simular delay de rede
+
     await new Promise(resolve => setTimeout(resolve, 400));
     
     const totalJogadoras = jogadorasData.length;

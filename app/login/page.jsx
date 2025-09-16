@@ -15,7 +15,7 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   
   const { login } = useAuth();
-  const router = useRouter(); // Next.js router
+  const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -85,7 +85,6 @@ export default function Login() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center p-4 mb-">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
-        {/* Logo/Header */}
         <div className="text-center mb-8">
           <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
             <LogIn className="w-8 h-8 text-purple-600" />
@@ -94,7 +93,6 @@ export default function Login() {
           <p className="text-gray-600">Entre na sua conta</p>
         </div>
 
-        {/* Demo Login Button */}
         <div className="mb-6">
           <button
             type="button"
@@ -105,16 +103,13 @@ export default function Login() {
           </button>
         </div>
 
-        {/* Error Message */}
         {errors.general && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
             {errors.general}
           </div>
         )}
 
-        {/* Login Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Email Field */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
               Email
@@ -140,7 +135,6 @@ export default function Login() {
             )}
           </div>
 
-          {/* Password Field */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
               Senha
@@ -177,7 +171,6 @@ export default function Login() {
             )}
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={loading}
@@ -191,7 +184,6 @@ export default function Login() {
           </button>
         </form>
 
-        {/* Info */}
         <div className="mt-8 text-center">
           <p className="text-sm text-gray-600">
             Sistema de demonstração - qualquer email e senha funcionam

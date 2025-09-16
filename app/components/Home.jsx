@@ -15,7 +15,6 @@ function Home() {
 
   return (
     <div className="p-4">
-      {/* Welcome Section */}
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <h2 className="text-lg font-semibold text-gray-800 mb-2">
           Bem-vinda ao Donas da Bola!
@@ -31,12 +30,10 @@ function Home() {
         </p>
       </div>
 
-      {/* Copinha de Futebol Section */}
       <div className="mb-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-4">Copinha de Futebol</h3>
         
         <div className="grid grid-cols-2 gap-3 mb-4">
-          {/* Copa Sul */}
           <div className="bg-white border border-gray-200 rounded-lg p-3">
             <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
@@ -49,7 +46,6 @@ function Home() {
             </div>
           </div>
 
-          {/* Copa Norte */}
           <div className="bg-white border border-gray-200 rounded-lg p-3">
             <h4 className="font-medium text-gray-800 mb-2">Copa Norte</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
@@ -63,7 +59,6 @@ function Home() {
           </div>
         </div>
 
-        {/* Cadastro de Jogadora */}
         <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
           <div className="flex items-start">
             <div className="bg-green-100 rounded-full p-2 mr-3">
@@ -85,7 +80,6 @@ function Home() {
         </div>
       </div>
 
-      {/* Futebol Semanal Section */}
       <div className="bg-purple-600 text-white rounded-lg p-4 mb-6">
         <div className="flex items-center justify-between">
           <div className="flex-1">
@@ -104,7 +98,6 @@ function Home() {
         </div>
       </div>
 
-      {/* Modal de Cadastro */}
       <CadastroJogadora 
         isOpen={isCadastroOpen} 
         onClose={handleCloseCadastro} 
@@ -114,4 +107,3 @@ function Home() {
 }
 
 export default Home;
-

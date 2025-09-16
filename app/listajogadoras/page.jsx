@@ -92,7 +92,6 @@ function ListaJogadoras() {
 
   return (
     <div>
-      {/* Filtros */}
       <div className="p-4 bg-gray-50 border-b">
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
@@ -135,7 +134,7 @@ function ListaJogadoras() {
         </div>
       </div>
 
-      {/* Error Message */}
+
       {error && (
         <div className="mx-4 mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center">
           <AlertCircle className="w-5 h-5 mr-2" />
@@ -149,7 +148,7 @@ function ListaJogadoras() {
         </div>
       )}
 
-      {/* Loading State */}
+
       {loading && (
         <div className="p-8 text-center">
           <RefreshCw className="w-8 h-8 text-purple-600 animate-spin mx-auto mb-2" />
@@ -157,7 +156,6 @@ function ListaJogadoras() {
         </div>
       )}
 
-      {/* Lista de Jogadoras */}
       {!loading && (
         <div className="p-4">
           {jogadorasFiltradas.length === 0 ? (
@@ -232,7 +230,6 @@ function ListaJogadoras() {
                     )}
                   </div>
 
-                  {/* Data de cadastro */}
                   {jogadora.dataCadastro && (
                     <div className="mt-3 pt-3 border-t border-gray-100">
                       <p className="text-xs text-gray-500">
@@ -247,7 +244,7 @@ function ListaJogadoras() {
         </div>
       )}
 
-      {/* Estatísticas */}
+
       {!loading && jogadoras.length > 0 && (
         <div className="p-4 bg-gray-50 border-t">
           <div className="text-center">

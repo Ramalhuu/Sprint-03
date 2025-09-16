@@ -28,17 +28,16 @@ export default function RootLayout({ children }) {
     <html lang="pt-br">
       <body className={`${geistSans.variable} ${geistMono.variable} bg-white`}>
         <Providers>
-          {/* Estrutura da página sem flex para evitar faixa preta */}
+
           <div className="bg-white">
-            {/* Navigation no topo */}
+
             <Navigation /> 
             
-            {/* Conteúdo principal com background branco */}
+
             <main className="bg-white">
               {children}
             </main>
             
-            {/* Footer diretamente após o conteúdo */}
             <Footer />
           </div>
         </Providers>

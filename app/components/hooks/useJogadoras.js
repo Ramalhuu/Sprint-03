@@ -1,6 +1,6 @@
 "use client";
 import { useState, useCallback } from "react";
-import useApi from "./useApi";   // ✅ import do hook genérico
+import useApi from "./useApi";
 
 export function useJogadoras() {
   const { loading, error, execute, clearError } = useApi();

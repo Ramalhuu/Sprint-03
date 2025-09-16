@@ -24,11 +24,9 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Navbar */}
       <nav className="bg-purple-800 shadow-lg border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            {/* Logo */}
             <div className="flex-shrink-0">
               <Link href="/" passHref>
                 <h1 className="text-xl font-bold text-white cursor-pointer">
@@ -37,7 +35,6 @@ const Navigation = () => {
               </Link>
             </div>
 
-            {/* Menu desktop */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
                 <Link
@@ -63,7 +60,6 @@ const Navigation = () => {
               </div>
             </div>
 
-            {/* Botão menu mobile */}
             <div className="md:hidden">
               <button
                 type="button"
@@ -95,7 +91,6 @@ const Navigation = () => {
           </div>
         </div>
 
-        {/* Menu mobile */}
         {isMobileOpen && (
           <div className="md:hidden bg-purple-50">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -124,7 +119,6 @@ const Navigation = () => {
         )}
       </nav>
 
-      {/* Modal fora da nav */}
       <CadastroJogadora
         isOpen={isCadastroOpen}
         onClose={handleCloseCadastro}
