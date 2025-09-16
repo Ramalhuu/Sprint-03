@@ -83,7 +83,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center p-4 mb-">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
         {/* Logo/Header */}
         <div className="text-center mb-8">
@@ -121,7 +121,7 @@ export default function Login() {
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-gray-400" />
+                <Mail className="h-5 w-5 text-gray-800" />
               </div>
               <input
                 type="email"
@@ -129,7 +129,7 @@ export default function Login() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 text-gray-700 focus:ring-purple-500 focus:border-transparent ${
                   errors.email ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="seu.email@exemplo.com"
@@ -147,7 +147,7 @@ export default function Login() {
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-gray-400" />
+                <Lock className="h-5 w-5 text-gray-700" />
               </div>
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -155,7 +155,7 @@ export default function Login() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className={`block w-full pl-10 pr-10 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
+                className={`block w-full pl-10 pr-10 py-3 border rounded-lg focus:ring-2 text-gray-700 focus:ring-purple-500 focus:border-transparent ${
                   errors.password ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="Digite sua senha"
