@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, User, Mail, Phone, Calendar, MapPin, Target, Trophy, Clock } from 'lucide-react';
-import { useJogadoras } from './hooks/useApi';
+import { useJogadoras } from './hooks/useJogadoras';
 
 function CadastroJogadora({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -24,7 +24,6 @@ function CadastroJogadora({ isOpen, onClose }) {
       [name]: value
     }));
     
-    // Limpar erro do campo quando o usuário começar a digitar
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -32,7 +31,6 @@ function CadastroJogadora({ isOpen, onClose }) {
       }));
     }
     
-    // Limpar erro geral da API
     if (error) {
       clearError();
     }
@@ -82,11 +80,7 @@ function CadastroJogadora({ isOpen, onClose }) {
 
     try {
       await createJogadora(formData);
-      
-      // Mostrar mensagem de sucesso
       alert('Cadastro realizado com sucesso! Bem-vinda ao Donas da Bola!');
-      
-      // Resetar formulário
       setFormData({
         nome: '',
         email: '',
@@ -97,10 +91,8 @@ function CadastroJogadora({ isOpen, onClose }) {
         experiencia: '',
         disponibilidade: ''
       });
-      
       onClose();
     } catch (err) {
-      // O erro já está sendo gerenciado pelo hook useJogadoras
       console.error('Erro ao cadastrar jogadora:', err);
     }
   };
@@ -108,9 +100,8 @@ function CadastroJogadora({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
-        {/* Header */}
+    <div className="fixed inset-0 flex items-center justify-end p-4 z-50">
+      <div className="bg-white rounded-lg w-96 max-h-[90vh] overflow-y-auto mr-8 border border-gray-400 shadow-lg">
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-800">Cadastro de Jogadora</h2>
           <button 
@@ -122,16 +113,13 @@ function CadastroJogadora({ isOpen, onClose }) {
           </button>
         </div>
 
-        {/* Error Message */}
         {error && (
           <div className="mx-4 mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
             {error}
           </div>
         )}
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="p-4 space-y-4">
-          {/* Nome */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <User className="w-4 h-4 mr-1" />
@@ -144,14 +132,13 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.nome ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               placeholder="Digite seu nome completo"
               disabled={loading}
             />
             {errors.nome && <p className="mt-1 text-sm text-red-600">{errors.nome}</p>}
           </div>
 
-          {/* Email */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Mail className="w-4 h-4 mr-1" />
@@ -164,14 +151,13 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.email ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               placeholder="seu.email@exemplo.com"
               disabled={loading}
             />
             {errors.email && <p className="mt-1 text-sm text-red-600">{errors.email}</p>}
           </div>
 
-          {/* Telefone */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Phone className="w-4 h-4 mr-1" />
@@ -184,14 +170,13 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.telefone ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               placeholder="(11) 99999-9999"
               disabled={loading}
             />
             {errors.telefone && <p className="mt-1 text-sm text-red-600">{errors.telefone}</p>}
           </div>
 
-          {/* Idade */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Calendar className="w-4 h-4 mr-1" />
@@ -204,7 +189,7 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.idade ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               placeholder="Ex: 25"
               min="16"
               max="60"
@@ -213,7 +198,6 @@ function CadastroJogadora({ isOpen, onClose }) {
             {errors.idade && <p className="mt-1 text-sm text-red-600">{errors.idade}</p>}
           </div>
 
-          {/* Cidade */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <MapPin className="w-4 h-4 mr-1" />
@@ -226,14 +210,13 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.cidade ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               placeholder="Ex: São Paulo, SP"
               disabled={loading}
             />
             {errors.cidade && <p className="mt-1 text-sm text-red-600">{errors.cidade}</p>}
           </div>
 
-          {/* Posição */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Target className="w-4 h-4 mr-1" />
@@ -245,7 +228,7 @@ function CadastroJogadora({ isOpen, onClose }) {
               onChange={handleChange}
               className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent ${
                 errors.posicao ? 'border-red-300' : 'border-gray-300'
-              }`}
+              } text-black`}
               disabled={loading}
             >
               <option value="">Selecione sua posição</option>
@@ -260,7 +243,6 @@ function CadastroJogadora({ isOpen, onClose }) {
             {errors.posicao && <p className="mt-1 text-sm text-red-600">{errors.posicao}</p>}
           </div>
 
-          {/* Experiência */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Trophy className="w-4 h-4 mr-1" />
@@ -270,7 +252,7 @@ function CadastroJogadora({ isOpen, onClose }) {
               name="experiencia"
               value={formData.experiencia}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black"
               disabled={loading}
             >
               <option value="">Selecione seu nível</option>
@@ -281,7 +263,6 @@ function CadastroJogadora({ isOpen, onClose }) {
             </select>
           </div>
 
-          {/* Disponibilidade */}
           <div>
             <label className="flex items-center text-sm font-medium text-gray-700 mb-2">
               <Clock className="w-4 h-4 mr-1" />
@@ -291,7 +272,7 @@ function CadastroJogadora({ isOpen, onClose }) {
               name="disponibilidade"
               value={formData.disponibilidade}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent text-black"
               disabled={loading}
             >
               <option value="">Selecione sua disponibilidade</option>
@@ -303,7 +284,6 @@ function CadastroJogadora({ isOpen, onClose }) {
             </select>
           </div>
 
-          {/* Buttons */}
           <div className="flex space-x-3 pt-4">
             <button
               type="button"
@@ -332,4 +312,3 @@ function CadastroJogadora({ isOpen, onClose }) {
 }
 
 export default CadastroJogadora;
-

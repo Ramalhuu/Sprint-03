@@ -18,16 +18,8 @@ function Home() {
 
   return (
     <div className="p-4 min-h-screen bg-white">
-      <div>
-      <Navigation />
-      {/* Seu outro conteúdo da página aqui */}
-      <main>
-        <h1>Bem-vindo à Home Page!</h1>
-        {/* ... */}
-      </main>
-    </div>
       {/* Welcome Section */}
-      <div className="bg-gray-200 rounded-lg p-4 mb-6">
+      <div className="bg-gray-200 rounded-lg p-4 mb-6 mt-8">
         <h2 className="text-6xl font-semibold text-gray-800 mb-2 text-center">
           Bem-vinda ao <strong className="text-purple-600">Donas da Bola!</strong>
         </h2>
