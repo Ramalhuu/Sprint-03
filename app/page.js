@@ -73,7 +73,7 @@ function Home() {
         </div>
       </div>
 
-      <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+      <h3 className="text-4xl font-semibold text-gray-800 mb-9 text-center">
         Próximos Jogos
       </h3>
 

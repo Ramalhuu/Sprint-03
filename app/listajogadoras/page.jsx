@@ -100,7 +100,7 @@ function ListaJogadoras() {
               placeholder="Buscar por nome..."
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
-              className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               disabled={loading}
             />
             <button
@@ -118,7 +118,7 @@ function ListaJogadoras() {
             <select
               value={filtroPos}
               onChange={(e) => setFiltroPos(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               disabled={loading}
             >
               <option value="">Todas as posições</option>
