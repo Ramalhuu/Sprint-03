@@ -1,13 +1,39 @@
-Donas da Bola ⚽💜
+Donas da Bola - Plataforma de Futebol Feminino
 
-💜 Sobre o Projeto
+Este é um projeto Next.js desenvolvido para a plataforma Donas da Bola, dedicada ao futebol feminino. Ele oferece às jogadoras um espaço para se conectar, participar de eventos, organizar jogos semanais e acompanhar torneios.
 
-Donas da Bola é uma plataforma dedicada ao futebol feminino, proporcionando um espaço seguro e divertido para jogadoras se conectarem, participarem de torneios e organizarem jogos semanais.
-O projeto foi desenvolvido com Next.js e React, usando Tailwind CSS para estilização responsiva e Lucide Icons para ícones modernos.
 
-🌟 Funcionalidades Principais
+Tecnologias Utilizadas
 
-Boas-vindas motivacional: mensagem de introdução à plataforma e incentivo às jogadoras
+Next.js - framework React moderno para aplicações web
+
+React - biblioteca para construção de interfaces
+
+Tailwind CSS - estilização rápida e responsiva
+
+Lucide Icons - ícones SVG para interface
+
+Vercel - plataforma para deploy e hospedagem
+
+
+Objetivo do Projeto
+
+Criar uma experiência completa para jogadoras de futebol feminino, permitindo que elas:
+
+Se conectem com outras jogadoras e clubes
+
+Se inscrevam em torneios e copas regionais
+
+Participem de jogos semanais gratuitos
+
+Tenham acesso a informações e horários de jogos
+
+Tenham um espaço seguro e inclusivo para crescer no esporte
+
+
+Funcionalidades Principais
+
+Seção de boas-vindas: introdução à plataforma e mensagem motivacional para jogadoras
 
 Copinha de Futebol: listagem de copas regionais com datas e horários
 
@@ -84,5 +110,5 @@ Repositório Next.js no GitHub
 
 ☁️ Deploy
 
-O deploy pode ser feito facilmente na Vercel:
-Deploy do Next.js na Vercel
+O deploy pode ser realizado na Vercel, plataforma oficial do Next.js.
+Veja a documentação de deploy do Next.js na Vercel
