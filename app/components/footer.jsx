@@ -86,12 +86,12 @@ const Footer = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a 
-                  href="#" 
+                <Link 
+                  href="/central-de-ajuda" 
                   className="text-purple-100 hover:text-white transition-colors duration-200 text-sm"
                 >
                   Central de Ajuda
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
