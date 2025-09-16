@@ -77,7 +77,7 @@ function Home() {
         Próximos Jogos
       </h3>
 
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex">
+      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
         <div className="flex flex-col justify-center items-start mr-6">
           <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
             <img src="/img/SPFC.png" alt="Time A Logo" className="w-6 h-6" />
@@ -89,7 +89,8 @@ function Home() {
             <span>Corinthians</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center flex-1 mr-43">
+
+        <div className="flex flex-col justify-center items-center flex-1 mr-23">
           <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -100,9 +101,14 @@ function Home() {
             <span>14:00</span>
           </div>
         </div>
+
+        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
+          <span className="text-xl font-bold text-gray-800">2 - 1</span>
+          <span className="text-sm text-gray-600">Simulado</span>
+        </div>
       </div>
 
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex">
+      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
         <div className="flex flex-col justify-center items-start mr-6">
           <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
             <img src="/img/PALMEIRAS.png" alt="Time A Logo" className="w-6 h-6" />
@@ -114,7 +120,8 @@ function Home() {
             <span>Juventus-SP</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center flex-1 mr-47">
+
+        <div className="flex flex-col justify-center items-center flex-1 mr-26">
           <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -125,9 +132,14 @@ function Home() {
             <span>14:00</span>
           </div>
         </div>
+
+        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
+          <span className="text-xl font-bold text-gray-800">1 - 0</span>
+          <span className="text-sm text-gray-600">Simulado</span>
+        </div>
       </div>
 
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex">
+      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
         <div className="flex flex-col justify-center items-start mr-6">
           <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
             <img src="/img/GREMIO.png" alt="Time A Logo" className="w-6 h-6" />
@@ -139,7 +151,8 @@ function Home() {
             <span>Internacional</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center flex-1 mr-47">
+
+        <div className="flex flex-col justify-center items-center flex-1 mr-29">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -150,9 +163,14 @@ function Home() {
             <span>18:00</span>
           </div>
         </div>
+
+        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
+          <span className="text-xl font-bold text-gray-800">3 - 2</span>
+          <span className="text-sm text-gray-600">Simulado</span>
+        </div>
       </div>
 
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex">
+      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
         <div className="flex flex-col justify-center items-start mr-6">
           <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
             <img src="/img/JUVENTUDE.png" alt="Time A Logo" className="w-6 h-6" />
@@ -164,7 +182,8 @@ function Home() {
             <span>Brasil</span>
           </div>
         </div>
-        <div className="flex flex-col justify-center items-center flex-1 mr-47">
+
+        <div className="flex flex-col justify-center items-center flex-1 mr-23">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -175,7 +194,13 @@ function Home() {
             <span>18:00</span>
           </div>
         </div>
+
+        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
+          <span className="text-xl font-bold text-gray-800">0 - 0</span>
+          <span className="text-sm text-gray-600">Simulado</span>
+        </div>
       </div>
+
 
       <CadastroJogadora 
         isOpen={isCadastroOpen} 

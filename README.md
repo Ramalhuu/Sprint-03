@@ -5,6 +5,12 @@ Donas da Bola ⚽💜
 Donas da Bola é uma plataforma dedicada ao futebol feminino, proporcionando um espaço seguro e divertido para jogadoras se conectarem, participarem de torneios e organizarem jogos semanais.
 O projeto foi desenvolvido com Next.js e React, usando Tailwind CSS para estilização responsiva e Lucide Icons para ícones modernos.
 
+Integrantes:
+-Felipe Santos Nunes.  563919
+-Felipe Souto da Costa Lanna.  566578
+-Felipe Ramalho Junqueira Berto.  562148
+Sala: 1ESS
+
 🌟 Funcionalidades Principais
 
 Boas-vindas motivacional: mensagem de introdução à plataforma e incentivo às jogadoras
