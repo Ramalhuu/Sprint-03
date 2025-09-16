@@ -19,8 +19,8 @@ function Home() {
   return (
     <div className="p-4 min-h-screen bg-white ">
       {/* Welcome Section */}
-      <div className="bg-gray-200 rounded-lg p-4 mb-15 mt-8">
-        <h2 className="text-6xl font-semibold text-gray-800 mb-2 text-center">
+      <div className="bg-gray-200 rounded-lg p-4 mb-25 mt-20">
+        <h2 className="text-6xl font-semibold text-gray-800 mb-9 text-center">
           Bem-vinda ao <strong className="text-purple-600">Donas da Bola!</strong>
         </h2>
         <p className="text-2xl text-gray-600 leading-relaxed mb-2 text-center pl-15 pr-15">
@@ -37,21 +37,21 @@ function Home() {
         
         <div className="grid grid-cols-2 gap-3 mb-4">
           {/* Copa Sul */}
-          <div className="bg-white border border-gray-200 rounded-lg p-3">
+          <div className="bg-white border border-purple-600 rounded-lg p-3">
             <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
               <Calendar className="w-4 h-4 mr-1" />
-              <span>15 JUL, 2025</span>
+              <span>17 JUL, 2025</span>
             </div>
             <div className="flex items-center text-sm text-gray-600">
               <Clock className="w-4 h-4 mr-1" />
-              <span>10:00</span>
+              <span>18:00</span>
             </div>
           </div>
 
           {/* Copa Norte */}
-          <div className="bg-white border border-gray-200 rounded-lg p-3">
-            <h4 className="font-medium text-gray-800 mb-2">Copa Norte</h4>
+          <div className="bg-white border border-purple-600 rounded-lg p-3">
+            <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
               <Calendar className="w-4 h-4 mr-1" />
               <span>17 JUL, 2025</span>
@@ -67,7 +67,7 @@ function Home() {
       </div>
 
       {/* Futebol Semanal Section */}
-      <div className="bg-purple-600 text-white rounded-lg p-4 mb-6">
+      <div className="bg-purple-600 text-white rounded-lg p-4 mb-25 mt-25">
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <h3 className="font-semibold mb-1">Futebol Semanal - Gratuito</h3>
@@ -132,7 +132,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1 mr-43">
+        <div className="flex flex-col justify-center items-center flex-1 mr-47">
           <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -161,7 +161,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1 mr-43">
+        <div className="flex flex-col justify-center items-center flex-1 mr-47">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -169,7 +169,7 @@ function Home() {
           </div>
           <div className="flex items-center text-sm text-gray-600">
             <Clock className="w-4 h-4 mr-1" />
-            <span>14:00</span>
+            <span>18:00</span>
           </div>
         </div>
       </div>
@@ -190,7 +190,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center items-center flex-1 mr-43">
+        <div className="flex flex-col justify-center items-center flex-1 mr-47">
           <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
           <div className="flex items-center text-sm text-gray-600 mb-1">
             <Calendar className="w-4 h-4 mr-1" />
@@ -198,7 +198,7 @@ function Home() {
           </div>
           <div className="flex items-center text-sm text-gray-600">
             <Clock className="w-4 h-4 mr-1" />
-            <span>14:00</span>
+            <span>18:00</span>
           </div>
         </div>
       </div>
