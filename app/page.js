@@ -71,26 +71,7 @@ function Home() {
           </div>
         </div>
 
-        {/* Cadastro de Jogadora */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
-          <div className="flex items-start">
-            <div className="bg-green-100 rounded-full p-2 mr-3">
-              <User className="w-5 h-5 text-green-600" />
-            </div>
-            <div className="flex-1">
-              <h4 className="font-medium text-gray-800 mb-1">Cadastro de Jogadora</h4>
-              <p className="text-sm text-gray-600 mb-3">
-                Se cadastre para ter mais chance de ser chamada por empresas!
-              </p>
-              <button 
-                onClick={handleOpenCadastro}
-                className="w-full bg-pink-500 text-white py-2 px-4 rounded-lg font-medium hover:bg-pink-600 transition-colors"
-              >
-                Cadastrar-se
-              </button>
-            </div>
-          </div>
-        </div>
+
       </div>
 
       {/* Futebol Semanal Section */}

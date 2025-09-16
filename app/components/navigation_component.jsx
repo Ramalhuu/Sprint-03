@@ -1,12 +1,25 @@
 // components/Navigation.jsx
 import React, { useState } from 'react';
+import { useAuth } from './AuthContext';
 import Link from 'next/link';
+import CadastroJogadora from './CadastroJogadora';
+import { useJogadoras } from './hooks/useJogadoras';
 
 const Navigation = () => {
+  const { user } = useAuth();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isCadastroOpen, setIsCadastroOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileOpen(!isMobileOpen);
+  };
+
+  const handleOpenCadastro = () => {
+    setIsCadastroOpen(true);
+  };
+
+  const handleCloseCadastro = () => {
+    setIsCadastroOpen(false);
   };
 
   return (
@@ -33,9 +46,14 @@ const Navigation = () => {
               >
                 Procurar Jogadoras
               </Link>
-              <span className="text-gray-400 cursor-not-allowed px-3 py-2 rounded-md text-sm font-medium">
-                Em Breve
-              </span>
+              {user && (
+                <button
+                  onClick={handleOpenCadastro}
+                  className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                >
+                  Cadastrar Jogadora
+                </button>
+              )}
             </div>
           </div>
 
@@ -78,12 +96,21 @@ const Navigation = () => {
             >
               Procurar Jogadoras
             </Link>
-            <span className="text-gray-400 cursor-not-allowed block px-3 py-2 rounded-md text-base font-medium">
-              Em Breve
-            </span>
+            {user && (
+              <button
+                onClick={handleOpenCadastro}
+                className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+              >
+                Cadastrar-se
+              </button>
+            )}
           </div>
         </div>
       )}
+      <CadastroJogadora 
+        isOpen={isCadastroOpen} 
+        onClose={handleCloseCadastro} 
+      />
     </nav>
   );
 };
