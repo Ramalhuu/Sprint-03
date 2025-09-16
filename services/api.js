@@ -1,11 +1,11 @@
 // /services/api.js
 
-const API_URL = "http://localhost:3000"; // Substitua pela URL real da API
+const API_URL = "http://localhost:3001";
 
 const apiService = {
-  // Listar todas as jogadoras
+
   async getJogadoras(filters = {}) {
-    // Exemplo com fetch
+
     const query = new URLSearchParams(filters).toString();
     const res = await fetch(`${API_URL}/jogadoras?${query}`);
     if (!res.ok) throw new Error("Erro ao buscar jogadoras");
@@ -13,7 +13,7 @@ const apiService = {
     return data;
   },
 
-  // Criar uma jogadora
+
   async createJogadora(jogadoraData) {
     const res = await fetch(`${API_URL}/jogadoras`, {
       method: "POST",
@@ -25,7 +25,7 @@ const apiService = {
     return data;
   },
 
-  // Atualizar uma jogadora
+
   async updateJogadora(id, jogadoraData) {
     const res = await fetch(`${API_URL}/jogadoras/${id}`, {
       method: "PUT",
@@ -37,7 +37,7 @@ const apiService = {
     return data;
   },
 
-  // Deletar uma jogadora
+
   async deleteJogadora(id) {
     const res = await fetch(`${API_URL}/jogadoras/${id}`, {
       method: "DELETE",
@@ -46,7 +46,7 @@ const apiService = {
     return true;
   },
 
-  // Exemplo de login
+
   async login(email, password) {
     const res = await fetch(`${API_URL}/login`, {
       method: "POST",
@@ -60,13 +60,13 @@ const apiService = {
     return { success: true, data };
   },
 
-  // Exemplo de logout
+
   async logout() {
-    // Se sua API tiver endpoint de logout
+
     await fetch(`${API_URL}/logout`, { method: "POST" });
   },
 
-  // Exemplo de estatísticas
+
   async getEstatisticas() {
     const res = await fetch(`${API_URL}/estatisticas`);
     if (!res.ok) throw new Error("Erro ao buscar estatísticas");
@@ -76,3 +76,4 @@ const apiService = {
 };
 
 export default apiService;
+

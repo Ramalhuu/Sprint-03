@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { User, Mail, Phone, MapPin, Calendar, Clock, Star, RefreshCw, AlertCircle } from 'lucide-react';
-import { useJogadoras } from '../components/hooks/useApi';
+import { useJogadoras } from '../components/hooks/useJogadoras';
 import { useRouter } from 'next/navigation';
 
 function ListaJogadoras() {
