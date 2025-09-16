@@ -17,8 +17,7 @@ Próximos Jogos: exibição detalhada de partidas com times, logos, datas e hor�
 
 Cadastro de Jogadoras: modal para novas usuárias se cadastrarem na plataforma
 
-🖼️ Visual da Página Principal
-<div align="center"> <img src="https://via.placeholder.com/800x400?text=Print+da+Página+Principal" alt="Página Principal" width="80%"> </div>
+
 🚀 Tecnologias Utilizadas
 
 Next.js
