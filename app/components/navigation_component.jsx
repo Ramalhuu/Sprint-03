@@ -41,7 +41,7 @@ const Navigation = () => {
             </div>
 
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-10 flex items-center space-x-4">
                 {!user ? (
                   <>
                     <Link
@@ -87,20 +87,20 @@ const Navigation = () => {
                       </button>
                       
                       {isProfileOpen && (
-                        <div className="absolute right-0 mt-2 w-60 h-60  bg-white rounded-md shadow-lg py-1 z-50 border-4 border-purple-700 rounded-lg-3xl">
-                          <div className="px-4 py-2 text-sm text-gray-700 border-b">
-                            <p className="font-medium">{user.name}</p>
-                            <p className="text-gray-500">{user.email}</p>
+                        <div className="absolute right-0 mt-2 w-60 bg-white rounded-lg shadow-xl py-1 z-50 border-2 border-purple-700">
+                          <div className="px-4 py-3 text-sm text-gray-800 border-b border-purple-100">
+                            <p className="font-semibold text-purple-800">{user.name}</p>
+                            <p className="text-gray-600">{user.email}</p>
                           </div>
                           <button
                             onClick={handleOpenCadastro}
-                            className="block text-left px-4 py-2 bg-purple-700 text-sm mt-5 text-white hover:bg-purple-500 border border-purple-700 rounded-lg text-center w-11/12 mx-auto"
+                            className="block w-full text-left px-4 py-2 text-sm text-purple-700 hover:bg-purple-50 hover:text-purple-900 transition-colors duration-200"
                           >
                             Cadastrar-se como jogadora
                           </button>
                           <button
                             onClick={logout}
-                            className="block text-left px-4 py-2 bg-purple-700 text-sm mt-5 text-white hover:bg-purple-500 border border-purple-700 rounded-lg text-center w-11/12 mx-auto"
+                            className="block w-full text-left px-4 py-2 text-sm text-purple-700 hover:bg-purple-50 hover:text-purple-900 transition-colors duration-200"
                           >
                             Sair
                           </button>

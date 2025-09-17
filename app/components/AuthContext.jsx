@@ -10,12 +10,54 @@ export function AuthProvider({ children }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
+  const API_BASE_URL = 'http://localhost:3001/api';
+
   const login = async (email, password) => {
-    console.log(`Tentativa de login com: ${email}, ${password}`);
-    await new Promise(resolve => setTimeout(resolve, 500));
-    const authData = { email: email, name: 'Usuário Demo' };
-    setUser(authData);
-    return { success: true };
+    try {
+      const response = await fetch(`${API_BASE_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setUser(data.user);
+        return { success: true };
+      } else {
+        return { success: false, error: data.error };
+      }
+    } catch (error) {
+      console.error('Erro no login:', error);
+      return { success: false, error: 'Erro de conexão com o servidor' };
+    }
+  };
+
+  const register = async (email, password, username) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password, username }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setUser(data.user);
+        return { success: true };
+      } else {
+        return { success: false, error: data.error };
+      }
+    } catch (error) {
+      console.error('Erro no registro:', error);
+      return { success: false, error: 'Erro de conexão com o servidor' };
+    }
   };
 
   const logout = () => {
@@ -30,6 +72,7 @@ export function AuthProvider({ children }) {
   const value = {
     user,
     login,
+    register,
     logout,
     loading
   };

@@ -1,3 +1,4 @@
+const bcrypt = require("bcryptjs"); // Agora CommonJS
 
 const mockJogadoras = [
   {
@@ -65,108 +66,153 @@ const mockJogadoras = [
 let jogadorasData = [...mockJogadoras];
 let nextId = 6;
 
+// Usuários para autenticação (em memória)
+let users = [
+  {
+    id: 1,
+    email: "demo@donasdobola.com",
+    username: "demo",
+    passwordHash: "$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi" // 123456
+  }
+];
+let nextUserId = 2;
+
 const apiService = {
-
   async getJogadoras(filters = {}) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
     let filteredJogadoras = [...jogadorasData];
-    
+
     if (filters.posicao) {
-      filteredJogadoras = filteredJogadoras.filter(j => j.posicao === filters.posicao);
+      filteredJogadoras = filteredJogadoras.filter(
+        (j) => j.posicao === filters.posicao
+      );
     }
     if (filters.cidade) {
-      filteredJogadoras = filteredJogadoras.filter(j => 
+      filteredJogadoras = filteredJogadoras.filter((j) =>
         j.cidade.toLowerCase().includes(filters.cidade.toLowerCase())
       );
     }
     if (filters.experiencia) {
-      filteredJogadoras = filteredJogadoras.filter(j => j.experiencia === filters.experiencia);
+      filteredJogadoras = filteredJogadoras.filter(
+        (j) => j.experiencia === filters.experiencia
+      );
     }
-    
+
     return { jogadoras: filteredJogadoras };
   },
 
   async createJogadora(jogadoraData) {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
     const novaJogadora = {
       ...jogadoraData,
       id: nextId++,
-      dataCadastro: new Date().toISOString()
+      dataCadastro: new Date().toISOString(),
     };
-    
+
     jogadorasData.push(novaJogadora);
     return novaJogadora;
   },
 
   async updateJogadora(id, jogadoraData) {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const index = jogadorasData.findIndex(j => j.id === parseInt(id));
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    const index = jogadorasData.findIndex((j) => j.id === parseInt(id));
     if (index === -1) {
       throw new Error("Jogadora não encontrada");
     }
-    
+
     jogadorasData[index] = { ...jogadorasData[index], ...jogadoraData };
     return jogadorasData[index];
   },
 
   async deleteJogadora(id) {
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const index = jogadorasData.findIndex(j => j.id === parseInt(id));
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    const index = jogadorasData.findIndex((j) => j.id === parseInt(id));
     if (index === -1) {
       throw new Error("Jogadora não encontrada");
     }
-    
+
     jogadorasData.splice(index, 1);
     return true;
   },
 
-  async login(email, password) {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    if (email && password) {
-      return { 
-        success: true, 
-        data: { 
-          email, 
-          name: 'Usuário Demo',
-          token: 'demo-token-123'
-        } 
-      };
+  async register(email, password, username) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    if (!email || !password) {
+      return { success: false, error: "Email e senha são obrigatórios" };
     }
-    
-    return { success: false, error: "Credenciais inválidas" };
+
+    const existingUser = users.find((user) => user.email === email);
+    if (existingUser) {
+      return { success: false, error: "Email já cadastrado" };
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    const newUser = {
+      id: nextUserId++,
+      email,
+      username: username || email.split("@")[0],
+      passwordHash,
+    };
+    users.push(newUser);
+
+    const { passwordHash: _, ...userWithoutHash } = newUser;
+    return { success: true, user: userWithoutHash };
+  },
+
+  async login(email, password) {
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    if (!email || !password) {
+      return { success: false, error: "Email e senha são obrigatórios" };
+    }
+
+    const user = users.find((u) => u.email === email);
+
+    if (!user) {
+      return { success: false, error: "Email ou senha inválidos" };
+    }
+
+    const isValidPassword = await bcrypt.compare(password, user.passwordHash);
+
+    if (!isValidPassword) {
+      return { success: false, error: "Email ou senha inválidos" };
+    }
+
+    const { passwordHash: _, ...userWithoutHash } = user;
+    return { success: true, user: userWithoutHash };
   },
 
   async logout() {
-
-    await new Promise(resolve => setTimeout(resolve, 200));
+    await new Promise((resolve) => setTimeout(resolve, 200));
     return true;
   },
 
-
   async getEstatisticas() {
+    await new Promise((resolve) => setTimeout(resolve, 400));
 
-    await new Promise(resolve => setTimeout(resolve, 400));
-    
     const totalJogadoras = jogadorasData.length;
     const posicoes = jogadorasData.reduce((acc, j) => {
       acc[j.posicao] = (acc[j.posicao] || 0) + 1;
       return acc;
     }, {});
-    
+
     return {
       totalJogadoras,
       posicoes,
-      ultimoCadastro: jogadorasData.length > 0 ? 
-        Math.max(...jogadorasData.map(j => new Date(j.dataCadastro).getTime())) : null
+      ultimoCadastro:
+        jogadorasData.length > 0
+          ? Math.max(
+              ...jogadorasData.map((j) => new Date(j.dataCadastro).getTime())
+            )
+          : null,
     };
   },
 };
 
-export default apiService;
-
+module.exports = apiService;
