@@ -6,9 +6,10 @@ import Link from 'next/link';
 import CadastroJogadora from './CadastroJogadora';
 
 const Navigation = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isCadastroOpen, setIsCadastroOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileOpen(!isMobileOpen);
@@ -20,6 +21,10 @@ const Navigation = () => {
 
   const handleCloseCadastro = () => {
     setIsCadastroOpen(false);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileOpen(!isProfileOpen);
   };
 
   return (
@@ -37,25 +42,72 @@ const Navigation = () => {
 
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-4">
-                <Link
-                  href="/login"
-                  className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                >
-                  Login da Jogadora
-                </Link>
-                <Link
-                  href="/listajogadoras"
-                  className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                >
-                  Procurar Jogadoras
-                </Link>
-                {user && (
-                  <button
-                    onClick={handleOpenCadastro}
-                    className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
-                  >
-                    Cadastrar-se
-                  </button>
+                {!user ? (
+                  <>
+                    <Link
+                      href="/login"
+                      className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Login da Jogadora
+                    </Link>
+                    <Link
+                      href="/listajogadoras"
+                      className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Procurar Jogadoras
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      href="/listajogadoras"
+                      className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
+                    >
+                      Procurar Jogadoras
+                    </Link>
+                    <div className="relative">
+                      <button
+                        onClick={toggleProfileMenu}
+                        className="text-white hover:bg-purple-700 p-2 rounded-full transition-colors duration-200 flex items-center"
+                      >
+                        <svg
+                          className="w-6 h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                          />
+                        </svg>
+                      </button>
+                      
+                      {isProfileOpen && (
+                        <div className="absolute right-0 mt-2 w-60 h-60  bg-white rounded-md shadow-lg py-1 z-50 border-4 border-purple-700 rounded-lg-3xl">
+                          <div className="px-4 py-2 text-sm text-gray-700 border-b">
+                            <p className="font-medium">{user.name}</p>
+                            <p className="text-gray-500">{user.email}</p>
+                          </div>
+                          <button
+                            onClick={handleOpenCadastro}
+                            className="block text-left px-4 py-2 bg-purple-700 text-sm mt-5 text-white hover:bg-purple-500 border border-purple-700 rounded-lg text-center w-11/12 mx-auto"
+                          >
+                            Cadastrar-se como jogadora
+                          </button>
+                          <button
+                            onClick={logout}
+                            className="block text-left px-4 py-2 bg-purple-700 text-sm mt-5 text-white hover:bg-purple-500 border border-purple-700 rounded-lg text-center w-11/12 mx-auto"
+                          >
+                            Sair
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
             </div>
@@ -94,25 +146,46 @@ const Navigation = () => {
         {isMobileOpen && (
           <div className="md:hidden bg-purple-50">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link
-                href="/login"
-                className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Login da Jogadora
-              </Link>
-              <Link
-                href="/listajogadoras"
-                className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-              >
-                Procurar Jogadoras
-              </Link>
-              {user && (
-                <button
-                  onClick={handleOpenCadastro}
-                  className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Cadastrar Jogadora
-                </button>
+              {!user ? (
+                <>
+                  <Link
+                    href="/login"
+                    className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Login da Jogadora
+                  </Link>
+                  <Link
+                    href="/listajogadoras"
+                    className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Procurar Jogadoras
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <div className="px-3 py-2 text-gray-700 border-b border-gray-200">
+                    <p className="font-medium">{user.name}</p>
+                    <p className="text-gray-500 text-sm">{user.email}</p>
+                  </div>
+                  <button
+                    onClick={handleOpenCadastro}
+                    className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                  >
+                    Cadastrar Jogadora
+                  </button>
+                  <Link
+                    href="/listajogadoras"
+                    className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
+                  >
+                    Procurar Jogadoras
+                  </Link>
+                  <button
+                    onClick={logout}
+                    className="text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                  >
+                    Sair
+                  </button>
+                </>
               )}
             </div>
           </div>
