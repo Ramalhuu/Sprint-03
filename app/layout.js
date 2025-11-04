@@ -2,7 +2,7 @@
 
 import Providers from './providers';
 import Navigation from './components/navigation_component';
-import Footer from './components/Footer'; 
+import Footer from './components/footer'; 
 
 
 import { Geist, Geist_Mono } from "next/font/google";
