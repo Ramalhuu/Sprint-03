@@ -30,12 +30,12 @@ const Navigation = () => {
   return (
     <>
       <nav className="bg-purple-800 shadow-lg border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
           <div className="flex justify-between items-center h-16">
             <div className="flex-shrink-0">
               <Link href="/" passHref>
-                <h1 className="text-xl font-bold text-white cursor-pointer">
-                  Donas da Bola
+                <h1 className="text-xl font-bold text-white cursor-pointer -ml-55">
+                  Donas da Bola<img src='/img/727699bf8d10e0918a710677e1f41a0e-menina-jogando-futebol.webp' alt='Logo' className='inline-block w-8 h-8 ml-2'/>
                 </h1>
               </Link>
             </div>
@@ -48,7 +48,7 @@ const Navigation = () => {
                       href="/login"
                       className="text-white hover:bg-gray-100 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200"
                     >
-                      Login da Jogadora
+                      Login
                     </Link>
                     <Link
                       href="/listajogadoras"

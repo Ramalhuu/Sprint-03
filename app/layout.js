@@ -1,10 +1,10 @@
-// app/layout.js - Versão corrigida sem faixa preta
+
 
 import Providers from './providers';
 import Navigation from './components/navigation_component';
-import Footer from './components/Footer'; // Importe o Footer
+import Footer from './components/Footer'; 
 
-// Seus fonts e metadata
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -26,15 +26,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-br">
-      <body className={`${geistSans.variable} ${geistMono.variable} bg-white`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} bg-[#f5efe6]`}>
         <Providers>
 
-          <div className="bg-white">
+          <div className="bg-[#f5efe6]">
 
             <Navigation /> 
             
 
-            <main className="bg-white">
+            <main className="bg-[#f5efe6]">
               {children}
             </main>
             

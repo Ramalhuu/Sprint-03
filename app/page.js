@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { Calendar, Clock, User } from 'lucide-react';
 import CadastroJogadora from './components/CadastroJogadora';
 import Navigation from './components/navigation_component';
+import Link from 'next/link';
+import MatchCard from "./components/Matchcards";
 
 function Home() {
   const [isCadastroOpen, setIsCadastroOpen] = useState(false);
@@ -15,9 +17,51 @@ function Home() {
   const handleCloseCadastro = () => {
     setIsCadastroOpen(false);
   };
+  const matches = [
+    {
+      teamA: "São Paulo",
+      teamALogo: "/img/SPFC.png",
+      teamB: "Corinthians",
+      teamBLogo: "/img/CORINTHIANS.png",
+      competition: "Copa São Paulo",
+      date: "17 JUL, 2025",
+      time: "14:00",
+      score: "2 - 1",
+    },
+    {
+      teamA: "Palmeiras",
+      teamALogo: "/img/PALMEIRAS.png",
+      teamB: "Juventus-SP",
+      teamBLogo: "/img/JUVENTUS-SP.png",
+      competition: "Copa São Paulo",
+      date: "17 JUL, 2025",
+      time: "14:00",
+      score: "1 - 0",
+    },
+    {
+      teamA: "Grêmio",
+      teamALogo: "/img/GREMIO.png",
+      teamB: "Internacional",
+      teamBLogo: "/img/INTERNACIONAL.png",
+      competition: "Copa Sul",
+      date: "17 JUL, 2025",
+      time: "18:00",
+      score: "3 - 2",
+    },
+    {
+      teamA: "Juventude",
+      teamALogo: "/img/JUVENTUDE.png",
+      teamB: "Brasil",
+      teamBLogo: "/img/BRASIL.png",
+      competition: "Copa Sul",
+      date: "17 JUL, 2025",
+      time: "18:00",
+      score: "0 - 0",
+    },
+  ];
 
   return (
-    <div className="p-4 min-h-screen bg-white ">
+    <div className="p-4 min-h-screen bg-[#f5efe6] ">
       <div className="bg-gray-200 rounded-lg p-4 mb-25 mt-20">
         <h2 className="text-6xl font-semibold text-gray-800 mb-9 text-center">
           Bem-vinda ao <strong className="text-purple-600">Donas da Bola!</strong>
@@ -29,12 +73,14 @@ function Home() {
           Este é o seu espaço para brilhar, jogar e crescer dentro e fora das quadras. ⚽💜
         </p>
       </div>
-
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Copinha de Futebol</h3>
+      <div>
+        <h1 className="text-center font-semibold p-4 text-white bg-purple-600 ml-200 mr-200 text-3xl border border-black rounded-lg">Eventos</h1>
+      </div>
+      <div className="mb-3 bg-[rgba(0,0,0,0.9)] p-2 pb-8 rounded-lg mt-5">
+        <h3 className="text-2xl font-semibold text-white mb-4 mt-5 ml-5">Copinha de Futebol</h3>
         
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="bg-white border border-purple-600 rounded-lg p-3">
+        <div className="grid grid-cols-2 gap-3 mb-4 p-2">
+          <div className="bg-white border border-purple-600 rounded-lg p-3 relative">
             <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
               <Calendar className="w-4 h-4 mr-1" />
@@ -44,9 +90,17 @@ function Home() {
               <Clock className="w-4 h-4 mr-1" />
               <span>18:00</span>
             </div>
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-500 p-1 rounded-md text-center text-white w-32">
+              <Link
+                href="#"
+                className="w-full hover:opacity-80 cursor-pointer block text-white"
+              >
+                Mais informações
+              </Link>
+            </div>
           </div>
 
-          <div className="bg-white border border-purple-600 rounded-lg p-3">
+          <div className="bg-white border border-purple-600 rounded-lg p-3 relative">
             <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
             <div className="flex items-center text-sm text-gray-600 mb-1">
               <Calendar className="w-4 h-4 mr-1" />
@@ -56,11 +110,20 @@ function Home() {
               <Clock className="w-4 h-4 mr-1" />
               <span>14:00</span>
             </div>
+            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-green-500 p-1 rounded-md text-center text-white w-32">
+              <Link
+                href="#"
+                className="w-full hover:opacity-80 cursor-pointer block text-white"
+              >
+                Mais informações
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="bg-purple-600 text-white rounded-lg p-4 mb-25 mt-25">
+        <h1 className="text-2xl font-semibold text-white mb-4 mt-25 text-center ">
+          Evento corporativo
+        </h1>
+        <div className="bg-purple-600 text-white rounded-lg p-4 mb-10 ml-3 mr-3 mt-2 relative">
         <div className="flex items-center justify-between">
           <div className="flex-1">
             <h3 className="font-semibold mb-1">Futebol Semanal - Gratuito</h3>
@@ -70,137 +133,24 @@ function Home() {
             </div>
             <p className="text-sm">Inscrições fecham às 14:15</p>
           </div>
+          <Link
+                href="#"
+                className=" hover:opacity-80 cursor-pointer block text-white bg-green-500 p-1 rounded-md text-center w-32"
+              >
+                Se inscreva Aqui!
+          </Link>
         </div>
       </div>
-
-      <h3 className="text-4xl font-semibold text-gray-800 mb-9 text-center">
-        Próximos Jogos
-      </h3>
-
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
-        <div className="flex flex-col justify-center items-start mr-6">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
-            <img src="/img/SPFC.png" alt="Time A Logo" className="w-6 h-6" />
-            <span>São Paulo</span>
-          </div>
-          <span className="text-gray-800 font-bold text-xl my-2 ml-15">X</span>
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pb-3">
-            <img src="/img/CORINTHIANS.png" alt="Time B Logo" className="w-6 h-6" />
-            <span>Corinthians</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-center items-center flex-1 mr-23">
-          <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
-          <div className="flex items-center text-sm text-gray-600 mb-1">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span>17 JUL, 2025</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="w-4 h-4 mr-1" />
-            <span>14:00</span>
-          </div>
-        </div>
-
-        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
-          <span className="text-xl font-bold text-gray-800">2 - 1</span>
-          <span className="text-sm text-gray-600">Simulado</span>
-        </div>
       </div>
 
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
-        <div className="flex flex-col justify-center items-start mr-6">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
-            <img src="/img/PALMEIRAS.png" alt="Time A Logo" className="w-6 h-6" />
-            <span>Palmeiras</span>
-          </div>
-          <span className="text-gray-800 font-bold text-xl my-2 ml-15">X</span>
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pb-3">
-            <img src="/img/JUVENTUS-SP.png" alt="Time B Logo" className="w-6 h-6" />
-            <span>Juventus-SP</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-center items-center flex-1 mr-26">
-          <h4 className="font-medium text-gray-800 mb-2">Copa São Paulo</h4>
-          <div className="flex items-center text-sm text-gray-600 mb-1">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span>17 JUL, 2025</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="w-4 h-4 mr-1" />
-            <span>14:00</span>
-          </div>
-        </div>
-
-        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
-          <span className="text-xl font-bold text-gray-800">1 - 0</span>
-          <span className="text-sm text-gray-600">Simulado</span>
-        </div>
+      <div>
+        <h1 className="text-center font-semibold p-4 text-white bg-purple-600 mt-20 mb-5 ml-200 mr-200 text-3xl border border-black rounded-lg">Próximos Jogos</h1>
       </div>
-
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
-        <div className="flex flex-col justify-center items-start mr-6">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
-            <img src="/img/GREMIO.png" alt="Time A Logo" className="w-6 h-6" />
-            <span>Grêmio</span>
-          </div>
-          <span className="text-gray-800 font-bold text-xl my-2 ml-15">X</span>
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pb-3">
-            <img src="/img/INTERNACIONAL.png" alt="Time B Logo" className="w-6 h-6" />
-            <span>Internacional</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-center items-center flex-1 mr-29">
-          <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
-          <div className="flex items-center text-sm text-gray-600 mb-1">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span>17 JUL, 2025</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="w-4 h-4 mr-1" />
-            <span>18:00</span>
-          </div>
-        </div>
-
-        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
-          <span className="text-xl font-bold text-gray-800">3 - 2</span>
-          <span className="text-sm text-gray-600">Simulado</span>
-        </div>
-      </div>
-
-      <div className="bg-white border border-purple-600 rounded-lg p-3 mb-6 flex items-center">
-        <div className="flex flex-col justify-center items-start mr-6">
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pt-3">
-            <img src="/img/JUVENTUDE.png" alt="Time A Logo" className="w-6 h-6" />
-            <span>Juventude</span>
-          </div>
-          <span className="text-gray-800 font-bold text-xl my-2 ml-15">X</span>
-          <div className="flex items-center gap-2 text-gray-800 font-semibold text-xl pb-3">
-            <img src="/img/BRASIL.png" alt="Time B Logo" className="w-6 h-6" />
-            <span>Brasil</span>
-          </div>
-        </div>
-
-        <div className="flex flex-col justify-center items-center flex-1 mr-23">
-          <h4 className="font-medium text-gray-800 mb-2">Copa Sul</h4>
-          <div className="flex items-center text-sm text-gray-600 mb-1">
-            <Calendar className="w-4 h-4 mr-1" />
-            <span>17 JUL, 2025</span>
-          </div>
-          <div className="flex items-center text-sm text-gray-600">
-            <Clock className="w-4 h-4 mr-1" />
-            <span>18:00</span>
-          </div>
-        </div>
-
-        <div className="ml-auto flex flex-col justify-center items-center bg-gray-100 px-4 py-2 rounded-lg">
-          <span className="text-xl font-bold text-gray-800">0 - 0</span>
-          <span className="text-sm text-gray-600">Simulado</span>
-        </div>
-      </div>
-
+      <div className="bg-[rgba(0,0,0,0.9)] p-8 rounded-lg">
+      {matches.map((match, index) => (
+        <MatchCard key={index} {...match} />
+      ))}
+    </div>
 
       <CadastroJogadora 
         isOpen={isCadastroOpen} 
