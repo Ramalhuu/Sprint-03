@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import apiService from "../../../../services/api";
+import apiService from "../../../services/api";
 
 export async function GET(request) {
   try {
