@@ -7,9 +7,16 @@ export function useJogadoras() {
   const [jogadoras, setJogadoras] = useState([]);
 
   const fetchJogadoras = useCallback(async (filters = {}) => {
-    const apiService = (await import("../../../services/api.js")).default;
+    const query = new URLSearchParams(filters).toString();
+    const url = `/api/jogadoras${query ? `?${query}` : ''}`;
     const data = await execute(
-      () => apiService.getJogadoras(filters),
+      async () => {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Erro ao buscar jogadoras: ${response.statusText}`);
+        }
+        return response.json();
+      },
       { 
         context: "Listagem de Jogadoras",
         silent: true
@@ -20,9 +27,21 @@ export function useJogadoras() {
   }, [execute]);
 
   const createJogadora = useCallback(async (jogadoraData) => {
-    const apiService = (await import("../../../services/api.js")).default;
     const data = await execute(
-      () => apiService.createJogadora(jogadoraData),
+      async () => {
+        const response = await fetch('/api/jogadoras', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(jogadoraData),
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `Erro ao cadastrar jogadora: ${response.statusText}`);
+        }
+        return response.json();
+      },
       { 
         context: "Cadastro de Jogadora",
         successMessage: "Jogadora cadastrada com sucesso!"
@@ -33,9 +52,21 @@ export function useJogadoras() {
   }, [execute]);
 
   const updateJogadora = useCallback(async (id, jogadoraData) => {
-    const apiService = (await import("../../../services/api.js")).default;
     const data = await execute(
-      () => apiService.updateJogadora(id, jogadoraData),
+      async () => {
+        const response = await fetch(`/api/jogadoras/${id}`, { // Assumindo que a rota de update será /api/jogadoras/[id]
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(jogadoraData),
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `Erro ao atualizar jogadora: ${response.statusText}`);
+        }
+        return response.json();
+      },
       { 
         context: "Atualização de Jogadora",
         successMessage: "Jogadora atualizada com sucesso!"
@@ -46,9 +77,17 @@ export function useJogadoras() {
   }, [execute]);
 
   const deleteJogadora = useCallback(async (id) => {
-    const apiService = (await import("../../../services/api.js")).default;
     await execute(
-      () => apiService.deleteJogadora(id),
+      async () => {
+        const response = await fetch(`/api/jogadoras/${id}`, { // Assumindo que a rota de delete será /api/jogadoras/[id]
+          method: 'DELETE',
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || `Erro ao remover jogadora: ${response.statusText}`);
+        }
+        return response.json();
+      },
       { 
         context: "Remoção de Jogadora",
         successMessage: "Jogadora removida com sucesso!"

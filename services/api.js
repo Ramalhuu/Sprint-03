@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs"); // Agora CommonJS
+import bcrypt from "bcryptjs"; // Alterado para import
 
 const mockJogadoras = [
   {
@@ -215,4 +215,4 @@ const apiService = {
   },
 };
 
-module.exports = apiService;
+export default apiService; // Alterado para export default
