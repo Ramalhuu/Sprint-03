@@ -100,8 +100,8 @@ function CadastroJogadora({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-end p-4 z-50">
-      <div className="bg-white rounded-lg w-96 max-h-[90vh] overflow-y-auto mr-8 border border-gray-400 shadow-lg">
+    <div className="fixed inset-0 flex items-center justify-center sm:justify-end p-4 z-50">
+      <div className="bg-white rounded-lg w-full max-w-md sm:w-96 max-h-[90vh] overflow-y-auto sm:mr-8 border border-gray-400 shadow-lg">
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           <h2 className="text-lg font-semibold text-gray-800">Cadastro de Jogadora</h2>
           <button 
@@ -284,18 +284,18 @@ function CadastroJogadora({ isOpen, onClose }) {
             </select>
           </div>
 
-          <div className="flex space-x-3 pt-4">
+          <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3 pt-4">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 py-3 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+              className="w-full sm:flex-1 py-3 px-4 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
               disabled={loading}
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className={`flex-1 py-3 px-4 rounded-lg font-medium text-white transition-colors ${
+              className={`w-full sm:flex-1 py-3 px-4 rounded-lg font-medium text-white transition-colors ${
                 loading
                   ? 'bg-gray-400 cursor-not-allowed'
                   : 'bg-pink-500 hover:bg-pink-600'

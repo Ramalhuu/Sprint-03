@@ -30,11 +30,11 @@ const Navigation = () => {
   return (
     <>
       <nav className="bg-purple-800 shadow-lg border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-10">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-center h-16 px-4 sm:px-6 lg:px-8">
             <div className="flex-shrink-0">
               <Link href="/" passHref>
-                <h1 className="text-xl font-bold text-white cursor-pointer -ml-55">
+                <h1 className="text-xl font-bold text-white cursor-pointer">
                   Donas da Bola<img src='/img/727699bf8d10e0918a710677e1f41a0e-menina-jogando-futebol.webp' alt='Logo' className='inline-block w-8 h-8 ml-2'/>
                 </h1>
               </Link>

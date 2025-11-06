@@ -90,8 +90,8 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center p-4 sm:p-8">
+      <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6 sm:p-8">
         <div className="text-center mb-8">
           <div className="bg-purple-100 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
             <UserPlus className="w-8 h-8 text-purple-600" />

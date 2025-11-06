@@ -92,15 +92,16 @@ function ListaJogadoras() {
 
   return (
     <div>
-      <div className="p-4 bg-gray-50 border-b">
+      <div className="p-4 sm:p-6 bg-gray-50 border-b">
         <div className="space-y-3">
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
             <input
               type="text"
+              suppressHydrationWarning
               placeholder="Buscar por nome..."
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
-              className="flex-1 p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full flex-1 p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               disabled={loading}
             />
             <button
@@ -110,6 +111,7 @@ function ListaJogadoras() {
               }`}
               disabled={loading}
               title="Atualizar lista"
+              suppressHydrationWarning
             >
               <RefreshCw className={`w-5 h-5 text-gray-600 ${loading ? 'animate-spin' : ''}`} />
             </button>
@@ -157,7 +159,7 @@ function ListaJogadoras() {
       )}
 
       {!loading && (
-        <div className="p-4">
+        <div className="p-4 sm:p-6">
           {jogadorasFiltradas.length === 0 ? (
             <div className="text-center py-12">
               <User className="w-16 h-16 text-gray-300 mx-auto mb-4" />
@@ -179,9 +181,9 @@ function ListaJogadoras() {
               )}
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {jogadorasFiltradas.map((jogadora) => (
-                <div key={jogadora.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                <div key={jogadora.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center">
                       <div className="bg-purple-100 rounded-full p-2 mr-3">
@@ -209,7 +211,7 @@ function ListaJogadoras() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-2 text-sm text-gray-600">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-600">
                     <div className="flex items-center">
                       <Mail className="w-4 h-4 mr-2 text-gray-400" />
                       <span>{jogadora.email}</span>
@@ -246,7 +248,7 @@ function ListaJogadoras() {
 
 
       {!loading && jogadoras.length > 0 && (
-        <div className="p-4 bg-gray-50 border-t">
+        <div className="p-4 sm:p-6 bg-gray-50 border-t">
           <div className="text-center">
             <p className="text-sm text-gray-600">
               Total: <span className="font-semibold">{jogadoras.length}</span> jogadoras cadastradas

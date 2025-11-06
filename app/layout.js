@@ -1,4 +1,4 @@
-// aaa
+
 
 import Providers from './providers';
 import Navigation from './components/navigation_component';
@@ -34,7 +34,7 @@ export default function RootLayout({ children }) {
             <Navigation /> 
             
 
-            <main className="bg-[#f5efe6]">
+            <main className="bg-[#f5efe6] min-h-[calc(100vh-4rem)] md:min-h-[calc(100vh-5rem)]">
               {children}
             </main>
             
