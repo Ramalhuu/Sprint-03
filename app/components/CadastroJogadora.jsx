@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { X, User, Mail, Phone, Calendar, MapPin, Target, Trophy, Clock } from 'lucide-react';
-import { useJogadoras } from './hooks/useJogadoras';
+// ❌ REMOVIDO: import { useJogadoras } from './hooks/useJogadoras'; 
+
+// ⭐️ IMPORTADO: O hook customizado que acessa o estado centralizado
+import { useJogadorasContext } from './hooks/JogadorasContext'; 
+// ⚠️ Nota: Confirme se o caminho (./hooks/JogadorasContext) está correto no seu projeto.
 
 function CadastroJogadora({ isOpen, onClose }) {
+  // ⭐️ USA O CONTEXTO: Obtém as funções e o estado de loading/error da fonte central
+  const { createJogadora, loading, error, clearError } = useJogadorasContext();
+
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -15,7 +22,7 @@ function CadastroJogadora({ isOpen, onClose }) {
   });
 
   const [errors, setErrors] = useState({});
-  const { createJogadora, loading, error, clearError } = useJogadoras();
+  // const { createJogadora, loading, error, clearError } = useJogadoras(); // ❌ REMOVIDO
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -79,7 +86,9 @@ function CadastroJogadora({ isOpen, onClose }) {
     }
 
     try {
-      await createJogadora(formData);
+      // ⭐️ CHAMA A FUNÇÃO CENTRALIZADA (que atualiza o estado em todas as páginas)
+      await createJogadora(formData); 
+      
       alert('Cadastro realizado com sucesso! Bem-vinda ao Donas da Bola!');
       setFormData({
         nome: '',
@@ -94,6 +103,7 @@ function CadastroJogadora({ isOpen, onClose }) {
       onClose();
     } catch (err) {
       console.error('Erro ao cadastrar jogadora:', err);
+      // O 'error' do hook já deve ser exibido, mas este log é bom para debug.
     }
   };
 

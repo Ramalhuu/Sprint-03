@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    username: '',
+    nome: '',
     email: '',
     password: '',
     confirmPassword: ''
@@ -39,8 +39,8 @@ export default function Register() {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.username) {
-      newErrors.username = 'Nome de usuário é obrigatório';
+    if (!formData.nome) {
+      newErrors.nome = 'Nome é obrigatório';
     }
 
     if (!formData.email) {
@@ -75,7 +75,7 @@ export default function Register() {
     setLoading(true);
     
     try {
-      const result = await register(formData.email, formData.password, formData.username);
+      const result = await register(formData.email, formData.password, formData.nome);
       
       if (result.success) {
         router.push('/');
@@ -108,8 +108,8 @@ export default function Register() {
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-2">
-              Nome de usuário
+            <label htmlFor="nome" className="block text-sm font-medium text-gray-700 mb-2">
+              Nome
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -117,18 +117,18 @@ export default function Register() {
               </div>
               <input
                 type="text"
-                id="username"
-                name="username"
-                value={formData.username}
+                id="nome"
+                name="nome"
+                value={formData.nome}
                 onChange={handleChange}
                 className={`block w-full pl-10 pr-3 py-3 border rounded-lg focus:ring-2 text-gray-700 focus:ring-purple-500 focus:border-transparent ${
-                  errors.username ? 'border-red-300' : 'border-gray-300'
+                  errors.nome ? 'border-red-300' : 'border-gray-300'
                 }`}
-                placeholder="Seu nome de usuário"
+                placeholder="Seu nome"
               />
             </div>
-            {errors.username && (
-              <p className="mt-1 text-sm text-red-600">{errors.username}</p>
+            {errors.nome && (
+              <p className="mt-1 text-sm text-red-600">{errors.nome}</p>
             )}
           </div>
 
@@ -254,4 +254,3 @@ export default function Register() {
     </div>
   );
 }
-

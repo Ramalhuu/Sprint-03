@@ -11,12 +11,12 @@ export function AuthProvider({ children }) {
   const router = useRouter();
 
 
-  const API_BASE_URL = "/api";
+  const API_BASE_URL = "/Api";
 
 
   const login = async (email, password) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/login`, {
+      const response = await fetch(`/Api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -42,7 +42,7 @@ export function AuthProvider({ children }) {
 
   const register = async (nome, email, password) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/register`, {
+      const response = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nome, email, password }),

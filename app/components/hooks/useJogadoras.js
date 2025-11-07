@@ -22,7 +22,7 @@ export function useJogadoras() {
   // 🔹 Criar nova jogadora
   const createJogadora = async (novaJogadora) => {
     return await execute(async () => {
-      const res = await fetch("/api/jogadoras", {
+      const res = await fetch("/Api/jogadoras", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(novaJogadora),
