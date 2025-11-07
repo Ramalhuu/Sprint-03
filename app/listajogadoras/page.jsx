@@ -8,6 +8,8 @@ import { useRouter } from 'next/navigation';
 function ListaJogadoras() {
   const [filtro, setFiltro] = useState('');
   const [filtroPos, setFiltroPos] = useState('');
+  
+  // ✅ Versão mais limpa, sem o '= []' (porque o hook agora garante que é um array)
   const { jogadoras, loading, error, fetchJogadoras, clearError } = useJogadoras();
 
   useEffect(() => {
@@ -27,7 +29,8 @@ function ListaJogadoras() {
     loadJogadoras();
   };
 
-  const jogadorasFiltradas = jogadoras.filter(jogadora => {
+  // O fallback '|| []' aqui não é estritamente necessário agora, mas é uma boa prática defensiva, então mantive.
+  const jogadorasFiltradas = (jogadoras || []).filter(jogadora => {
     const nomeMatch = jogadora.nome.toLowerCase().includes(filtro.toLowerCase());
     const posicaoMatch = filtroPos === '' || jogadora.posicao === filtroPos;
     return nomeMatch && posicaoMatch;
@@ -264,4 +267,3 @@ function ListaJogadoras() {
 }
 
 export default ListaJogadoras;
-

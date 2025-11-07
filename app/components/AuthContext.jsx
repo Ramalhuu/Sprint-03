@@ -1,24 +1,24 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import React, { createContext, useContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-  const API_BASE_URL = 'http://localhost:3001/api';
+
+  const API_BASE_URL = "/api";
+
 
   const login = async (email, password) => {
     try {
       const response = await fetch(`${API_BASE_URL}/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
@@ -26,64 +26,77 @@ export function AuthProvider({ children }) {
 
       if (data.success) {
         setUser(data.user);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
         return { success: true };
       } else {
         return { success: false, error: data.error };
       }
     } catch (error) {
-      console.error('Erro no login:', error);
-      return { success: false, error: 'Erro de conexão com o servidor' };
+      console.error("Erro no login:", error);
+      return { success: false, error: "Erro de conexão com o servidor." };
     }
   };
 
-  const register = async (email, password, username) => {
+
+  const register = async (nome, email, password) => {
     try {
       const response = await fetch(`${API_BASE_URL}/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password, username }),
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, password }),
       });
 
       const data = await response.json();
 
       if (data.success) {
         setUser(data.user);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("user", JSON.stringify(data.user));
+        }
         return { success: true };
       } else {
         return { success: false, error: data.error };
       }
     } catch (error) {
-      console.error('Erro no registro:', error);
-      return { success: false, error: 'Erro de conexão com o servidor' };
+      console.error("Erro no registro:", error);
+      return { success: false, error: "Erro de conexão com o servidor." };
     }
   };
 
+
   const logout = () => {
     setUser(null);
-    router.push('/login');
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("user");
+    }
+    router.push("/login");
   };
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    }
     setLoading(false);
   }, []);
 
-  const value = {
-    user,
-    login,
-    register,
-    logout,
-    loading
-  };
+  const value = { user, login, register, logout, loading };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 }
 
 export function useAuth() {
   const context = useContext(AuthContext);
-  if (context === null) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+  if (!context) {
+    throw new Error("useAuth deve ser usado dentro de um AuthProvider");
   }
   return context;
 }
