@@ -44,7 +44,7 @@ export async function GET(request) {
     if (experiencia)
       filtered = filtered.filter((j) => j.experiencia === experiencia);
 
-    // 🔧 Retorna apenas o array
+    
     return NextResponse.json(filtered, { status: 200 });
   } catch (error) {
     console.error("Erro ao listar jogadoras:", error);

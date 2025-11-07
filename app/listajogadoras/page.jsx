@@ -91,7 +91,7 @@ function ListaJogadoras() {
   };
 
   return (
-    <div>
+    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }} className="min-h-screen">
       <div className="p-4 bg-gray-50 border-b">
         <div className="space-y-3">
           <div className="flex items-center space-x-2">
