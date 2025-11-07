@@ -1,34 +1,36 @@
 import { NextResponse } from "next/server";
-import apiService from "../../../../services/api";
 
-// Rota para atualizar (PUT)
+// ATENÇÃO: Em um ambiente de produção, esta API deve usar um banco de dados persistente.
+// A variável 'jogadoras' está sendo mantida em memória, o que causará perda de dados a cada reinício do servidor.
+let jogadoras = global.jogadoras || [];
+
 export async function PUT(request, { params }) {
   try {
     const { id } = params;
-    const jogadoraData = await request.json();
-    const result = await apiService.updateJogadora(id, jogadoraData);
+    const data = await request.json();
+    const index = jogadoras.findIndex((j) => j.id === parseInt(id));
 
-    return NextResponse.json(result, { status: 200 });
+    if (index === -1)
+      return NextResponse.json({ error: "Jogadora não encontrada" }, { status: 404 });
+
+    jogadoras[index] = { ...jogadoras[index], ...data };
+    return NextResponse.json(jogadoras[index]);
   } catch (error) {
-    console.error("Erro ao atualizar jogadora:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Erro interno do servidor ao atualizar jogadora" },
+      { error: "Erro ao atualizar jogadora" },
       { status: 500 }
     );
   }
 }
 
-// Rota para deletar (DELETE)
 export async function DELETE(request, { params }) {
   try {
     const { id } = params;
-    await apiService.deleteJogadora(id);
-
-    return NextResponse.json({ success: true }, { status: 200 });
+    jogadoras = jogadoras.filter((j) => j.id !== parseInt(id));
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Erro ao deletar jogadora:", error);
     return NextResponse.json(
-      { success: false, error: error.message || "Erro interno do servidor ao deletar jogadora" },
+      { error: "Erro ao deletar jogadora" },
       { status: 500 }
     );
   }

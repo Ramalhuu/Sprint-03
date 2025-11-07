@@ -1,20 +1,56 @@
 import { NextResponse } from "next/server";
-import apiService from "../../../../services/api";
+import fs from "fs";
+import path from "path";
+
+const filePath = path.join(process.cwd(), "data", "users.json");
 
 export async function POST(request) {
   try {
     const { email, password } = await request.json();
-    const result = await apiService.login(email, password);
 
-    if (result.success) {
-      return NextResponse.json(result, { status: 200 });
-    } else {
-      return NextResponse.json(result, { status: 401 });
+    if (!email || !password) {
+      return NextResponse.json(
+        { success: false, error: "Email e senha são obrigatórios." },
+        { status: 400 }
+      );
     }
+
+    let users = [];
+    try {
+      const data = fs.readFileSync(filePath, "utf8");
+      users = data ? JSON.parse(data) : [];
+    } catch (readError) {
+      // Se o arquivo não existir, ou houver erro de leitura, users será um array vazio.
+      // Isso será tratado na próxima verificação.
+    }
+
+    if (users.length === 0) {
+      return NextResponse.json(
+        { success: false, error: "Nenhum usuário cadastrado ainda." },
+        { status: 404 }
+      );
+    }
+    
+    const user = users.find(
+      (u) => u.email === email && u.password === password
+    );
+
+    if (!user) {
+      return NextResponse.json(
+        { success: false, error: "Email ou senha incorretos." },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json({
+      success: true,
+      message: "Login realizado com sucesso!",
+      user: { nome: user.nome, email: user.email },
+    });
   } catch (error) {
     console.error("Erro no login:", error);
     return NextResponse.json(
-      { success: false, error: "Erro interno do servidor" },
+      { success: false, error: "Erro interno do servidor." },
       { status: 500 }
     );
   }

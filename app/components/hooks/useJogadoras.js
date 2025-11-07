@@ -1,100 +1,42 @@
 "use client";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import useApi from "./useApi";
 
 export function useJogadoras() {
-  const { loading, error, execute, clearError } = useApi();
   const [jogadoras, setJogadoras] = useState([]);
+  const { loading, error, execute, clearError } = useApi();
 
-  const fetchJogadoras = useCallback(async (filters = {}) => {
-    const query = new URLSearchParams(filters).toString();
-    const url = `/api/jogadoras${query ? `?${query}` : ''}`;
-    const data = await execute(
-      async () => {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Erro ao buscar jogadoras: ${response.statusText}`);
-        }
-        return response.json();
-      },
-      { 
-        context: "Listagem de Jogadoras",
-        silent: true
-      }
-    );
-    setJogadoras(data.jogadoras || []);
-    return data;
-  }, [execute]);
+  // 🔹 Buscar jogadoras
+  const fetchJogadoras = async () => {
+    await execute(async () => {
+      const res = await fetch("/Api/jogadoras");
+      if (!res.ok) throw new Error("Erro ao carregar jogadoras");
+      const data = await res.json();
+      
+      // ✅ CORREÇÃO: A API retorna o array diretamente, não dentro de uma propriedade 'jogadoras'
+      setJogadoras(data); 
+      
+    }, { context: "fetchJogadoras" });
+  };
 
-  const createJogadora = useCallback(async (jogadoraData) => {
-    const data = await execute(
-      async () => {
-        const response = await fetch('/api/jogadoras', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(jogadoraData),
-        });
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `Erro ao cadastrar jogadora: ${response.statusText}`);
-        }
-        return response.json();
-      },
-      { 
-        context: "Cadastro de Jogadora",
-        successMessage: "Jogadora cadastrada com sucesso!"
-      }
-    );
-    setJogadoras(prev => [...prev, data]);
-    return data;
-  }, [execute]);
+  // 🔹 Criar nova jogadora
+  const createJogadora = async (novaJogadora) => {
+    return await execute(async () => {
+      const res = await fetch("/Api/jogadoras", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(novaJogadora),
+      });
 
-  const updateJogadora = useCallback(async (id, jogadoraData) => {
-    const data = await execute(
-      async () => {
-        const response = await fetch(`/api/jogadoras/${id}`, { // Assumindo que a rota de update será /api/jogadoras/[id]
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(jogadoraData),
-        });
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `Erro ao atualizar jogadora: ${response.statusText}`);
-        }
-        return response.json();
-      },
-      { 
-        context: "Atualização de Jogadora",
-        successMessage: "Jogadora atualizada com sucesso!"
-      }
-    );
-    setJogadoras(prev => prev.map(j => j.id === id ? data : j));
-    return data;
-  }, [execute]);
+      if (!res.ok) throw new Error("Erro ao cadastrar jogadora");
+      const data = await res.json();
 
-  const deleteJogadora = useCallback(async (id) => {
-    await execute(
-      async () => {
-        const response = await fetch(`/api/jogadoras/${id}`, { // Assumindo que a rota de delete será /api/jogadoras/[id]
-          method: 'DELETE',
-        });
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || `Erro ao remover jogadora: ${response.statusText}`);
-        }
-        return response.json();
-      },
-      { 
-        context: "Remoção de Jogadora",
-        successMessage: "Jogadora removida com sucesso!"
-      }
-    );
-    setJogadoras(prev => prev.filter(j => j.id !== id));
-  }, [execute]);
+      // Atualiza o estado local para exibir na lista
+      setJogadoras((prev) => [...prev, data]);
+
+      return data;
+    }, { context: "createJogadora" });
+  };
 
   return {
     jogadoras,
@@ -102,8 +44,6 @@ export function useJogadoras() {
     error,
     fetchJogadoras,
     createJogadora,
-    updateJogadora,
-    deleteJogadora,
-    clearError
+    clearError,
   };
 }
