@@ -17,13 +17,15 @@ export async function POST(request) {
 
     let users = [];
     try {
-      const data = fs.readFileSync(filePath, "utf8");
-      users = data ? JSON.parse(data) : [];
+      if (fs.existsSync(filePath)) {
+        const data = fs.readFileSync(filePath, "utf8");
+        users = data ? JSON.parse(data) : [];
+      }
     } catch (readError) {
-      // Se o arquivo não existir, users será um array vazio.
+      console.error("Erro ao ler arquivo de usuários:", readError);
     }
 
-    if (users.find(u => u.email === email)) {
+    if (users.find((u) => u.email === email)) {
       return NextResponse.json(
         { success: false, error: "E-mail já cadastrado." },
         { status: 409 }
@@ -31,15 +33,15 @@ export async function POST(request) {
     }
 
     const newUser = { id: Date.now(), nome, email, password };
-    users.push(newUser);
 
+    // Cria pasta se não existir
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
-    fs.writeFileSync(filePath, JSON.stringify(users, null, 2));
+    fs.writeFileSync(filePath, JSON.stringify([...users, newUser], null, 2));
 
     return NextResponse.json({
       success: true,
       message: "Usuário cadastrado com sucesso!",
-      user: { nome, email },
+      user: { nome, email }, // sem senha por segurança
     });
   } catch (error) {
     console.error("Erro no cadastro:", error);

@@ -1,9 +1,20 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { User, Mail, Phone, MapPin, Calendar, Clock, Star, RefreshCw, AlertCircle } from 'lucide-react';
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  Clock,
+  Star,
+  RefreshCw,
+  AlertCircle
+} from 'lucide-react';
 import { useJogadoras } from '../components/hooks/useJogadoras';
 import { useRouter } from 'next/navigation';
+import DashboardJogadoras from "../components/DashboardJogadoras";
 
 function ListaJogadoras() {
   const [filtro, setFiltro] = useState('');
@@ -91,97 +102,98 @@ function ListaJogadoras() {
   };
 
   return (
-    <div style={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }} className="min-h-screen">
-      <div className="p-4 bg-gray-50 border-b">
+    <div
+      style={{ backgroundColor: 'rgba(0, 0, 0, 0.9)' }}
+      className="min-h-screen text-white"
+    >
+      
+      <div className="p-4 sm:p-6 bg-gray-800 border-b border-gray-700">
         <div className="space-y-3">
-          <div className="flex items-center space-x-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-2">
             <input
               type="text"
               placeholder="Buscar por nome..."
               value={filtro}
               onChange={(e) => setFiltro(e.target.value)}
-              className="flex-1 p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="flex-1 p-3 border border-gray-600 bg-gray-800 text-gray-50 placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               disabled={loading}
             />
             <button
               onClick={handleRefresh}
-              className={`p-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors ${
+              className={`p-3 border border-gray-600 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors ${
                 loading ? 'cursor-not-allowed opacity-50' : ''
               }`}
               disabled={loading}
               title="Atualizar lista"
             >
-              <RefreshCw className={`w-5 h-5 text-gray-600 ${loading ? 'animate-spin' : ''}`} />
+              <RefreshCw className={`w-5 h-5 text-gray-300 ${loading ? 'animate-spin' : ''}`} />
             </button>
           </div>
+
           <div>
             <select
               value={filtroPos}
               onChange={(e) => setFiltroPos(e.target.value)}
-              className="w-full p-3 border border-gray-300 text-gray-800 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full p-3 border border-gray-600 bg-gray-800 text-gray-50 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               disabled={loading}
             >
-              <option value="">Todas as posições</option>
-              <option value="goleira">Goleira</option>
-              <option value="zagueira">Zagueira</option>
-              <option value="lateral">Lateral</option>
-              <option value="volante">Volante</option>
-              <option value="meia">Meia</option>
-              <option value="atacante">Atacante</option>
-              <option value="qualquer">Qualquer posição</option>
+              <option value="" className="bg-gray-800">Todas as posições</option>
+              <option value="goleira" className="bg-gray-800">Goleira</option>
+              <option value="zagueira" className="bg-gray-800">Zagueira</option>
+              <option value="lateral" className="bg-gray-800">Lateral</option>
+              <option value="volante" className="bg-gray-800">Volante</option>
+              <option value="meia" className="bg-gray-800">Meia</option>
+              <option value="atacante" className="bg-gray-800">Atacante</option>
+              <option value="qualquer" className="bg-gray-800">Qualquer posição</option>
             </select>
           </div>
         </div>
       </div>
 
-
+      
       {error && (
         <div className="mx-4 mt-4 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-center">
           <AlertCircle className="w-5 h-5 mr-2" />
           <span className="flex-1">{error}</span>
-          <button
-            onClick={handleRefresh}
-            className="ml-2 text-sm underline hover:no-underline"
-          >
+          <button onClick={handleRefresh} className="ml-2 text-sm underline hover:no-underline">
             Tentar novamente
           </button>
         </div>
       )}
 
-
+      
       {loading && (
         <div className="p-8 text-center">
           <RefreshCw className="w-8 h-8 text-purple-600 animate-spin mx-auto mb-2" />
-          <p className="text-gray-600">Carregando jogadoras...</p>
+          <p className="text-gray-400">Carregando jogadoras...</p>
         </div>
       )}
 
+      
       {!loading && (
-        <div className="p-4">
+        <div className="p-4 sm:p-6">
           {jogadorasFiltradas.length === 0 ? (
             <div className="text-center py-12">
               <User className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-lg font-medium text-gray-500 mb-2">
-                {jogadoras.length === 0 ? 'Nenhuma jogadora cadastrada' : 'Nenhuma jogadora encontrada'}
+              <h3 className="text-lg font-medium text-gray-400 mb-2">
+                {jogadoras.length === 0
+                  ? 'Nenhuma jogadora cadastrada'
+                  : 'Nenhuma jogadora encontrada'}
               </h3>
-              <p className="text-gray-400 mb-4">
-                {jogadoras.length === 0 
-                  ? 'Cadastre a primeira jogadora para começar!' 
+              <p className="text-gray-500 mb-4">
+                {jogadoras.length === 0
+                  ? 'Cadastre a primeira jogadora para começar!'
                   : 'Tente ajustar os filtros de busca.'}
               </p>
-              {error && (
-                <button
-                  onClick={handleRefresh}
-                  className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors"
-                >
-                  Tentar carregar novamente
-                </button>
-              )}
             </div>
           ) : (
-            <div className="space-y-4">
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {jogadorasFiltradas.map((jogadora) => (
-                <div key={jogadora.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                <div
+                  key={jogadora.id}
+                  className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
                   <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center">
                       <div className="bg-purple-100 rounded-full p-2 mr-3">
@@ -190,8 +202,13 @@ function ListaJogadoras() {
                       <div>
                         <h3 className="font-semibold text-gray-800">{jogadora.nome}</h3>
                         <div className="flex items-center mt-1">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium ${getPosicaoColor(jogadora.posicao)}`}>
-                            {jogadora.posicao.charAt(0).toUpperCase() + jogadora.posicao.slice(1)}
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs font-medium ${getPosicaoColor(
+                              jogadora.posicao
+                            )}`}
+                          >
+                            {jogadora.posicao.charAt(0).toUpperCase() +
+                              jogadora.posicao.slice(1)}
                           </span>
                           {jogadora.experiencia && (
                             <div className="ml-2 flex items-center">
@@ -209,7 +226,7 @@ function ListaJogadoras() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-2 text-sm text-gray-600">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-gray-600">
                     <div className="flex items-center">
                       <Mail className="w-4 h-4 mr-2 text-gray-400" />
                       <span>{jogadora.email}</span>
@@ -244,17 +261,10 @@ function ListaJogadoras() {
         </div>
       )}
 
-
+      
       {!loading && jogadoras.length > 0 && (
-        <div className="p-4 bg-gray-50 border-t">
-          <div className="text-center">
-            <p className="text-sm text-gray-600">
-              Total: <span className="font-semibold">{jogadoras.length}</span> jogadoras cadastradas
-              {filtro || filtroPos ? (
-                <span> • Exibindo: <span className="font-semibold">{jogadorasFiltradas.length}</span></span>
-              ) : null}
-            </p>
-          </div>
+        <div className="p-2 sm:p-48">
+          <DashboardJogadoras jogadoras={jogadoras} />
         </div>
       )}
     </div>
@@ -262,4 +272,3 @@ function ListaJogadoras() {
 }
 
 export default ListaJogadoras;
-

@@ -68,14 +68,13 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     setLoading(true);
     
     try {
-      const result = await register(formData.email, formData.password, formData.username);
+      // ✅ Corrigido: parâmetros na ordem certa (nome, email, senha)
+      const result = await register(formData.username, formData.email, formData.password);
       
       if (result.success) {
         router.push('/');
@@ -254,4 +253,3 @@ export default function Register() {
     </div>
   );
 }
-

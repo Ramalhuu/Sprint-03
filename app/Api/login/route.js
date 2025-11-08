@@ -17,11 +17,12 @@ export async function POST(request) {
 
     let users = [];
     try {
-      const data = fs.readFileSync(filePath, "utf8");
-      users = data ? JSON.parse(data) : [];
+      if (fs.existsSync(filePath)) {
+        const data = fs.readFileSync(filePath, "utf8");
+        users = data ? JSON.parse(data) : [];
+      }
     } catch (readError) {
-      // Se o arquivo não existir, ou houver erro de leitura, users será um array vazio.
-      // Isso será tratado na próxima verificação.
+      console.error("Erro ao ler arquivo de usuários:", readError);
     }
 
     if (users.length === 0) {
@@ -30,7 +31,7 @@ export async function POST(request) {
         { status: 404 }
       );
     }
-    
+
     const user = users.find(
       (u) => u.email === email && u.password === password
     );
@@ -42,6 +43,7 @@ export async function POST(request) {
       );
     }
 
+    // ✅ Retorna apenas o nome e email, sem senha
     return NextResponse.json({
       success: true,
       message: "Login realizado com sucesso!",
