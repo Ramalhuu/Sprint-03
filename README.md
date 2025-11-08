@@ -90,4 +90,4 @@ Repositório Next.js no GitHub
 ☁️ Deploy
 
 O deploy pode ser feito facilmente na Vercel:
-Deploy do Next.js na Vercel
+[Deploy do Next.js na Vercel](https://sprint-03-zbbs.vercel.app)
